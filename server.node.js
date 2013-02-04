@@ -87,6 +87,9 @@ function processMessage(msg, rInfo){
 
 }
 
+
+
+
 function searchTweet(msg){
 
 	/* twitter search results format:
@@ -130,30 +133,61 @@ function searchTweet(msg){
 
 	console.log("searching for " + msg);
 
+
+  var namePattr = /(@\w+)/g;
+  var tagPattr= /(#\w+)/g;
+  var wordPattr = /(\w+)/g;
+  var urlPattr = /(http:\/\/\S+)/g;
+
+
+
+
 	twit.search(msg, {count: 1}, function(err, data) {
 		
 //		fs.writeFile('out.txt', util.inspect(data, false. null));
 
 		$(data.results).each(function(index, value){
+      console.log('********************************************');
 			console.log(value.text);
-			console.log('********************************************');
+
+      // split the text up into individual words
+
+      // extract other useful features, like images, links, etc.
+      msg = value.text;
+      var names = msg.match(namePattr);
+      console.log(names);
+      msg = msg.replace(namePattr, ' ');
+      var tags = msg.match(tagPattr);
+      console.log(tags);
+      msg = msg.replace(tagPattr, ' ');
+      var urls = msg.match(urlPattr);
+      console.log(urls);
+      msg = msg.replace(urlPattr, ' ');
+      var words = msg.match(wordPattr);
+      console.log(words);
+
+      var wordargs = [];
+      $(words).each(function(i, word){
+         var wordarg = {type: "string", value:word};
+         wordargs.push(wordarg);
+      });
+
+      var buf = osc.toBuffer(
+      {
+        address : "line",
+        oscType : "message",
+        args : wordargs        
+      }
+      );
+      sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
+      return false;
+
 		});
 
 
 	 // console.log(data);
 	});
-	/*
-var buf = osc.toBuffer(
-{
-	address : "sayword",
-	oscType : "message",
-	args : 
-	[{ type : "string",
-		value : "hi there kid"}]
-}
-);
-sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
-*/
+
 
 
 }
