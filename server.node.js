@@ -4,8 +4,14 @@ var twitterAccessTokenKey = '19132948-9oFtnyOQ4xsZz4T0hboOL7t1OBakEfBzV5eVWxOzc'
 var twitterAccessTokenSecret = 'n5meS9coCcDzT8DCUEXCZNyLy5Wa4jrXiKGyIdYd6Y';
 
 var dgram = require("dgram");
-
+//var http = require('http');
+var http = require('follow-redirects').http;
 var twitter = require('ntwitter');
+var crypto = require('crypto');
+
+var fs = require('fs');
+var path = require('path');
+var request = require('request');
 
 var $ = require('jquery');
 
@@ -57,6 +63,11 @@ listener.on("listening", function () {
 
 listener.bind(11000);
 // server listening 0.0.0.0:41234
+
+
+
+processUrls(["http://t.co/sj3hNDmq"]);
+
 
 
 function processMessage(msg, rInfo){
@@ -142,6 +153,9 @@ function searchTweet(msg){
 
 
 
+
+
+
 	twit.search(msg, {count: 1}, function(err, data) {
 		
 //		fs.writeFile('out.txt', util.inspect(data, false. null));
@@ -155,31 +169,25 @@ function searchTweet(msg){
       // extract other useful features, like images, links, etc.
       msg = value.text;
       var names = msg.match(namePattr);
-      console.log(names);
+    //  console.log(names);
       msg = msg.replace(namePattr, ' ');
       var tags = msg.match(tagPattr);
-      console.log(tags);
+    //  console.log(tags);
       msg = msg.replace(tagPattr, ' ');
       var urls = msg.match(urlPattr);
       console.log(urls);
       msg = msg.replace(urlPattr, ' ');
       var words = msg.match(wordPattr);
-      console.log(words);
+    //  console.log(words);
 
-      var wordargs = [];
-      $(words).each(function(i, word){
-         var wordarg = {type: "string", value:word};
-         wordargs.push(wordarg);
-      });
+      processWords(words);
 
-      var buf = osc.toBuffer(
-      {
-        address : "line",
-        oscType : "message",
-        args : wordargs        
-      }
-      );
-      sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
+      processUrls(urls);
+
+      processTags(tags);
+
+      processNames(names);
+      
       return false;
 
 		});
@@ -193,3 +201,131 @@ function searchTweet(msg){
 }
 
 
+function processWords(wordList){
+  var wordargs = [];
+  $(wordList).each(function(i, word){
+     var wordarg = {type: "string", value:word};
+     wordargs.push(wordarg);
+  });
+
+  var buf = osc.toBuffer(
+  {
+    address : "line",
+    oscType : "message",
+    args : wordargs        
+  }
+  );
+  sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
+}
+
+function processUrls(urlList){
+  console.log(urlList); 
+  $(urlList).each(function (i, url){
+    console.log(url);
+    var hash = crypto.createHash('md5').update(url).digest("hex");
+    fs.writeFile("files/"+hash+".url.txt", url, function(err) {
+      if(err) {
+        console.log(err);
+      } else {
+        console.log("The file was saved!");
+      }
+    });
+
+    // fetch urls
+    http.get(url, function(res){
+      var data = '';
+      res.on('data', function (chunk) {
+        //console.log("chunk");
+       // console.log(chunk);
+        data += chunk;
+      });
+      res.on('end', function(err){
+        var doc = $(data); 
+
+        fs.writeFile("files/"+hash, data, function(err) {
+          if(err) {
+            console.log(err);
+          } else {
+            console.log("The file was saved!");
+          }
+        });
+
+        examineWebpage(url, doc);
+
+      });
+    }).on('error', function(e) {
+      console.log("Got error: " + e.message);
+    });
+  });
+
+
+}
+
+
+
+function examineWebpage(url, doc){
+  var images= [];
+
+  console.log("examining " + url);
+
+  $("meta[og\\:image]", doc).each(function(i, image){
+   // console.log(image);
+    var imageVal = $(image).attr("og:\\image").trim();
+    if(imageVal == ''){return true;}
+    console.log(imageVal);
+    images.push(imageVal);
+  });
+
+  $("meta[property='og:image']", doc).each(function(i, image){
+   // console.log(image);
+    var imageVal = $(image).attr("content").trim();
+    if(imageVal == ''){return true;}
+    console.log(imageVal);
+    images.push(imageVal);
+  });
+
+  $("img.media-slideshow-image[src]", doc).each(function(i, image){
+   // console.log(image);
+    var imageVal = $(image).attr("src").trim();
+    if(imageVal == ''){return true;}
+    console.log(imageVal);
+    images.push(imageVal);
+  });
+
+  console.log(images);
+  processImageUrls(images);
+}
+
+
+function processImageUrls(images){
+  // dl images, copy local, send path to max
+  $(images).each(function(i, img_url){
+    if (/^https?:\/\//.test(img_url)) {
+        console.log("trying to dl image " + img_url);
+        console.log(img_url);
+        img_name = path.basename(img_url);
+        var split = img_name.split(":");
+        var last = split.pop();
+        console.log(last);
+        img_name = split.join(':');
+        console.log(img_name);
+
+        request(img_url).pipe(fs.createWriteStream("files/images/"+img_name).on('error', function(err){console.log("file write error " + err)}));
+    }
+
+  });
+
+}
+
+
+function processNames(nameList){
+
+
+
+}
+
+function processTags(tagList){
+
+
+
+}
