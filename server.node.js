@@ -299,22 +299,58 @@ function examineWebpage(url, doc){
 
 function processImageUrls(images){
   // dl images, copy local, send path to max
+  var imageargs = [];
+
   $(images).each(function(i, img_url){
     if (/^https?:\/\//.test(img_url)) {
         console.log("trying to dl image " + img_url);
         console.log(img_url);
         img_name = path.basename(img_url);
-        var split = img_name.split(":");
-        var last = split.pop();
-        console.log(last);
-        img_name = split.join(':');
-        console.log(img_name);
+        if(img_name.indexOf(':') !== -1){
+          var split = img_name.split(":");
+          var last = split.pop();
+          console.log(last);
+          img_name = split.join(':');
+        }
+        var writepath = path.resolve(__dirname, 'files/images/' + img_name);
 
-        request(img_url).pipe(fs.createWriteStream("files/images/"+img_name).on('error', function(err){console.log("file write error " + err)}));
+        console.log("dling from " + img_url);
+        console.log("writing  to " + writepath);
+
+
+
+        request(img_url)
+          .pipe(fs.createWriteStream(writepath)
+            .on('error', function(err){console.log("file write error " + err)})
+            .on('close', function(event, filename){
+              console.log("image file written");
+              var imagearg = {type: "string" , value: writepath};
+              var buf = osc.toBuffer(
+                {
+                  address : "image",
+                  oscType : "message",
+                  args : imagearg        
+                }
+                );
+                sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
+
+
+            }));
+
+
+
+
+
     }
 
   });
+/*
+  $(wordList).each(function(i, word){
+     var wordarg = {type: "string", value:word};
+     wordargs.push(wordarg);
+  });
 
+*/
 }
 
 
