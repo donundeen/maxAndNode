@@ -3,10 +3,13 @@ var twitterConsumerSecret = 'GC7W0SZgrU8s3Rnhi82uh3X7njbOzppekzIkAKrTbk';
 var twitterAccessTokenKey = '19132948-9oFtnyOQ4xsZz4T0hboOL7t1OBakEfBzV5eVWxOzc';
 var twitterAccessTokenSecret = 'n5meS9coCcDzT8DCUEXCZNyLy5Wa4jrXiKGyIdYd6Y';
 
+var twitterBotName = "@donmaxbot";
+var lastTweetId = '0';
+
 var dgram = require("dgram");
 //var http = require('http');
 var http = require('follow-redirects').http;
-var twitter = require('ntwitter');
+var twitter = require('mtwitter');
 var crypto = require('crypto');
 
 var fs = require('fs');
@@ -28,6 +31,17 @@ var twit = new twitter({
 
 
 
+var donMaxBotCommands= {
+  's' : function(args){ runCommandSearchTwitter(args);},
+  'search' :  function(args){ runCommandSearchTwitter(args);},
+  'c' :  function(args){ runCommandChord(args);},
+  'chord' :  function(args){ runCommandChord(args);},
+  'r' :  function(args){ runCommandRhythm(args);},
+  'rhythm' :  function(args){ runCommandRhythm(args);},
+
+}
+
+
 
 // sending example
 var sender  = dgram.createSocket("udp4");
@@ -38,7 +52,7 @@ var buf = osc.toBuffer(
 	oscType : "message",
 	args : 
 	[{ type : "string",
-		value : "hi there kid"}]
+		value : "send from nodejs working"}]
 }
 );
 sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
@@ -46,7 +60,7 @@ sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
 
 
 
-// listener setup
+// listener setup, for listening to requests from max via udp
 var listener = dgram.createSocket("udp4");
 listener.on("message", function (msg, rinfo) {
   console.log("server got: " + msg + " from " +
@@ -65,11 +79,15 @@ listener.bind(11000);
 // server listening 0.0.0.0:41234
 
 
+// testing the processing of urls
+//processUrls(["http://t.co/sj3hNDmq"]);
 
-processUrls(["http://t.co/sj3hNDmq"]);
 
+// search twitter for new orders
+getTweetOrders();
+setInterval(getTweetOrders, 10000);
 
-
+// processing messages sent from max (maybe this can me merged with messages from twitter itself?)
 function processMessage(msg, rInfo){
 //	msg = ""+msg;
 
@@ -93,9 +111,6 @@ function processMessage(msg, rInfo){
 
 
 	}
-
-
-
 }
 
 
@@ -364,4 +379,90 @@ function processTags(tagList){
 
 
 
+}
+
+
+
+function getTweetOrders(){
+
+  msg = twitterBotName;
+  console.log("\n\nsearching for " +msg + " orders since id " + lastTweetId);
+  twit.search(msg, {count: 20,since_id: lastTweetId}, function(err, data) {
+//  twit.search(msg, {}, function(err, data) {
+  
+//   fs.writeFile('out.txt', util.inspect(data, false, null));
+    console.log("got results" + data.statuses.length);
+    data.statuses = sortTweets(data.statuses);
+//    console.log(data);
+    $(data.statuses).each(function(index, value){
+      console.log('********************************************');
+//      console.log(value);
+
+      // split the text up into individual words
+
+      // extract other useful features, like images, links, etc.
+      var tweettext = value.text;
+      var tweetid = value.id;
+      console.log(tweettext);
+      console.log(tweetid);
+
+      if(lastTweetId == tweetid){
+        return true;
+      }
+      lastTweetId = tweetid;
+      console.log("lastTweetId : " + lastTweetId);
+      parseTweetCommand(tweettext);
+
+    });
+
+
+ // console.log(data);
+  });
+}
+
+function sortTweets(resultsArray){
+  resultsArray.sort(function(a, b){
+    return (a.id - b.id);
+  });
+  return resultsArray;
+}
+
+function parseTweetCommand(tweetCommand){
+  tweetCommand = tweetCommand.trim();
+  console.log("parsing command: " + tweetCommand);
+  var pattr = /^\@donmaxbot\s+([\S]+)\s+(.*)$/;
+  var matches = tweetCommand.match(pattr);
+  var command = "";
+  if(matches){
+    var command = matches[1];
+    var args = matches[2];
+
+    console.log("command: " + command);
+    console.log("args: " + args);
+  }else{
+    console.log("'"+tweetCommand+"' isn't good command syntax");
+    return;
+  }
+
+  if(donMaxBotCommands[command]){
+    var commandFunction = donMaxBotCommands[command];
+    console.log("function is " + commandFunction);
+    commandFunction(args);
+  }else{
+    console.log("no function for command " + command);
+  }
+}
+
+
+function runCommandSearchTwitter(searchString){
+  console.log("searching twitter for " + searchString);
+}
+
+function runCommandRhythm(rhythmString){
+  console.log("processing rhythm " + rhythmString);
+}
+
+function runCommandChord(chordString){
+
+    console.log("processing chord " + chordString);
 }
