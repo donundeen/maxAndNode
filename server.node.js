@@ -490,9 +490,9 @@ function runCommandChord(chordString){
 
 
   var args = [];
-  $(noteArray).each(function(index, note)){
+  $(noteArray).each(function(index, note){
     args.push({type: "string",
-              value : note.midi});
+              value : ""+note.midi});
 
   });
 
