@@ -18,6 +18,9 @@ var request = require('request');
 
 var $ = require('jquery');
 
+var teoria = require('teoria');
+
+var osc = require('osc-min');
 
 var fs = require('fs');
 var util = require('util');
@@ -45,7 +48,6 @@ var donMaxBotCommands= {
 
 // sending example
 var sender  = dgram.createSocket("udp4");
-var osc = require('osc-min');
 var buf = osc.toBuffer(
 {
 	address : "sayword",
@@ -454,6 +456,7 @@ function parseTweetCommand(tweetCommand){
 }
 
 
+
 function runCommandSearchTwitter(searchString){
   console.log("searching twitter for " + searchString);
 }
@@ -463,6 +466,44 @@ function runCommandRhythm(rhythmString){
 }
 
 function runCommandChord(chordString){
+  console.log("processing chord " + chordString);
 
-    console.log("processing chord " + chordString);
+  var chord = teoria.chord(chordString);
+  var noteArray = [];
+
+  $(chord.notes).each(function(index, note){
+    note.octave = 1;
+//    noteArray.push(note);
+    var newoct = 1;
+    while(newoct < 8){
+      var newnote = new teoria.note(note.name + note.accidental.sign);
+      newnote.octave = newoct;
+      newnote.midi = newnote.key();
+      newoct++;
+      noteArray.push(newnote);
+    }
+  });
+
+  noteArray.sort(function (a,b){
+    return a.midi - b.midi;
+  });
+
+
+  var args = [];
+  $(noteArray).each(function(index, note)){
+    args.push({type: "string",
+              value : note.midi});
+
+  });
+
+  // now send back to Max
+  var sender  = dgram.createSocket("udp4");
+  var buf = osc.toBuffer(
+    {
+      address : "chordnotes",
+      oscType : "message",
+      args : args
+    }
+  );
+  sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
 }
