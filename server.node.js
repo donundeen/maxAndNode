@@ -473,7 +473,7 @@ function runCommandChord(chordString){
 
   $(chord.notes).each(function(index, note){
     note.octave = 1;
-//    noteArray.push(note);
+//    noteArray.push(note); 
     var newoct = 1;
     while(newoct < 8){
       var newnote = new teoria.note(note.name + note.accidental.sign);
