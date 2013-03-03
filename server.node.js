@@ -456,15 +456,23 @@ function parseTweetCommand(tweetCommand){
 }
 
 
-
+// run the searchtwee
 function runCommandSearchTwitter(searchString){
   console.log("searching twitter for " + searchString);
+  searchTweet(searchString);
 }
 
+
+
+// some sort of string that represents a rhythm, maybe just dots and spaces, or something?
 function runCommandRhythm(rhythmString){
   console.log("processing rhythm " + rhythmString);
 }
 
+
+
+
+// take a string that represents a chord, turn it into the full range of midi notes, and send to max
 function runCommandChord(chordString){
   console.log("processing chord " + chordString);
 
