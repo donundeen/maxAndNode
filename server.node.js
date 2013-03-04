@@ -1,7 +1,15 @@
-var twitterConsumerKey = '1V06tgB6jgzw03ODbFy1NQ';
-var twitterConsumerSecret = 'GC7W0SZgrU8s3Rnhi82uh3X7njbOzppekzIkAKrTbk';
-var twitterAccessTokenKey = '19132948-9oFtnyOQ4xsZz4T0hboOL7t1OBakEfBzV5eVWxOzc';
-var twitterAccessTokenSecret = 'n5meS9coCcDzT8DCUEXCZNyLy5Wa4jrXiKGyIdYd6Y';
+/*
+https://dev.twitter.com/docs/api
+
+
+*/
+
+var secrets = require('./secrets');
+var twitterConsumerKey = secrets.twitterConsumerKey ;
+var twitterConsumerSecret = secrets.twitterConsumerSecret ;
+var twitterAccessTokenKey = secrets.twitterAccessTokenKey ;
+var twitterAccessTokenSecret = secrets.twitterAccessTokenSecret ;
+
 
 var twitterBotName = "@donmaxbot";
 var lastTweetId = '0';
