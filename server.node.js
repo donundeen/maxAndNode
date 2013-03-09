@@ -41,6 +41,8 @@ var twit = new twitter({
 });
 
 
+// currently this account is read-only, can't post.
+//twit.updateStatus("here is a cool message",{}, function(err){console.log("in callback"); console.log(err);});
 
 var donMaxBotCommands= {
   's' : function(args){ runCommandSearchTwitter(args);},
