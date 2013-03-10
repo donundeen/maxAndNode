@@ -51,6 +51,8 @@ var donMaxBotCommands= {
   'chord' :  function(args){ runCommandChord(args);},
   'r' :  function(args){ runCommandRhythm(args);},
   'rhythm' :  function(args){ runCommandRhythm(args);},
+  'b' :  function(args){ runCommandBpm(args);},
+  'bpm' :  function(args){ runCommandBpm(args);},
 
 }
 
@@ -125,7 +127,10 @@ function processMessage(msg, rInfo){
 	}
 }
 
-
+var namePattr = /(@\w+)/g;
+var tagPattr= /(#\w+)/g;
+var wordPattr = /(\w+)/g;
+var urlPattr = /(http:\/\/\S+)/g;
 
 
 function searchTweet(msg){
@@ -172,10 +177,7 @@ function searchTweet(msg){
 	console.log("searching for " + msg);
 
 
-  var namePattr = /(@\w+)/g;
-  var tagPattr= /(#\w+)/g;
-  var wordPattr = /(\w+)/g;
-  var urlPattr = /(http:\/\/\S+)/g;
+
 
 
 
@@ -186,9 +188,11 @@ function searchTweet(msg){
 	twit.search(msg, {count: 1}, function(err, data) {
 		
 //		fs.writeFile('out.txt', util.inspect(data, false. null));
+  //  console.log(err);
+//    console.log(data);
 
-		$(data.results).each(function(index, value){
-      console.log('********************************************');
+		$(data.statuses).each(function(index, value){
+      console.log('************ Search Results ********************************');
 			console.log(value.text);
 
       // split the text up into individual words
@@ -201,6 +205,7 @@ function searchTweet(msg){
       var tags = msg.match(tagPattr);
     //  console.log(tags);
       msg = msg.replace(tagPattr, ' ');
+
       var urls = msg.match(urlPattr);
       console.log(urls);
       msg = msg.replace(urlPattr, ' ');
@@ -215,7 +220,7 @@ function searchTweet(msg){
 
       processNames(names);
       
-      return false;
+ //     return false;
 
 		});
 
@@ -344,8 +349,6 @@ function processImageUrls(images){
         console.log("dling from " + img_url);
         console.log("writing  to " + writepath);
 
-
-
         request(img_url)
           .pipe(fs.createWriteStream(writepath)
             .on('error', function(err){console.log("file write error " + err)})
@@ -360,13 +363,7 @@ function processImageUrls(images){
                 }
                 );
                 sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
-
-
             }));
-
-
-
-
 
     }
 
@@ -452,17 +449,27 @@ function parseTweetCommand(tweetCommand){
     console.log("command: " + command);
     console.log("args: " + args);
   }else{
-    console.log("'"+tweetCommand+"' isn't good command syntax");
-    return;
+    console.log("'"+tweetCommand+"' isn't good command syntax, but maybe you sent an http link");
+    
   }
 
-  if(donMaxBotCommands[command]){
-    var commandFunction = donMaxBotCommands[command];
-    console.log("function is " + commandFunction);
-    commandFunction(args);
-  }else{
-    console.log("no function for command " + command);
+  if(command != ""){
+    if(donMaxBotCommands[command]){
+      var commandFunction = donMaxBotCommands[command];
+      console.log("function is " + commandFunction);
+      commandFunction(args);
+    }else{
+      console.log("no function for command " + command);
+    }
   }
+
+  // processing urls sent directly to @donmaxbot
+  console.log("checking command " + tweetCommand  + " for urls, using pattern " + urlPattr);
+  var urls = tweetCommand.match(urlPattr);
+  console.log(urls);
+  processUrls(urls);
+
+
 }
 
 
@@ -477,6 +484,26 @@ function runCommandSearchTwitter(searchString){
 // some sort of string that represents a rhythm, maybe just dots and spaces, or something?
 function runCommandRhythm(rhythmString){
   console.log("processing rhythm " + rhythmString);
+}
+
+
+function runCommandBpm(bpmString){
+  console.log("processing bpm " + bpmString);
+  bpmString = bpmString.trim();
+  var args = {type: "string",
+              value : ""+bpmString};
+
+  // now send back to Max
+  var sender  = dgram.createSocket("udp4");
+  var buf = osc.toBuffer(
+    {
+      address : "bpm",
+      oscType : "message",
+      args : args
+    }
+  );
+  sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
+
 }
 
 
