@@ -156,8 +156,9 @@ listener.bind(11000);
 // testing the processing of urls
 //processUrls(["http://t.co/sj3hNDmq"]);
 
+parseTweetCommand("@donmaxbot h");
 
-//parseTweetCommand("@donmaxbot h");
+parseTweetCommand("@donmaxbot r  . .. 987 .23 .2. ");
 
 
 // search twitter for new orders
@@ -500,10 +501,11 @@ function sortTweets(resultsArray){
 }
 
 function parseTweetCommand(tweetCommand){
-  tweetCommand = tweetCommand.trim();
+//  tweetCommand = tweetCommand.trim();
   console.log("parsing command: " + tweetCommand);
-  var pattr = /^\@donmaxbot\s+([\S]+)(\s+(.*))?$/;
+  var pattr = /^\@donmaxbot\s+([\S]+)\s?(\s+(.*))?$/;
   var matches = tweetCommand.match(pattr);
+  console.log(matches);
   var command = "";
   if(matches){
     var command = matches[1];
@@ -546,7 +548,48 @@ function runCommandSearchTwitter(searchString){
 
 // some sort of string that represents a rhythm, maybe just dots and spaces, or something?
 function runCommandRhythm(rhythmString){
-  console.log("processing rhythm " + rhythmString);
+  console.log("processing rhythm '" + rhythmString +"'");
+  // rhythm is a series of spaces, and either dots or numbers. spaces get turned into 0s, and numbers get scaled to floats, somehow
+
+  var r2 = rhythmString.replace(/ /g, "|0|");
+  console.log(r2);
+  var r2 = r2.replace(/(\.[0-9]*)/g, "|$1|");
+  console.log(r2);
+  var r2 = r2.replace(/(\.)([^0-9])/g, "|1|$2");
+  console.log(r2);
+  var r2 = r2.replace(/\|\|/g, "|");
+  var r2 = r2.replace(/\|\|/g, "|");
+  var r2 = r2.replace(/^\|(.*)\|$/g, "$1");
+  console.log(r2);
+  var split = r2.split("|");
+  console.log(split);
+
+  var args = [];
+  $(split).each(function(index, value){
+    console.log(value);
+    if(value > 1){
+      var valstring = "."+ Math.round(value);
+      value = parseFloat(valstring);
+    }
+    console.log("now  " + value);
+
+    args.push({type: "string",
+              value : ""+value});
+
+  });
+
+  // now send back to Max
+  var sender  = dgram.createSocket("udp4");
+  var buf = osc.toBuffer(
+    {
+      address : "rhythm",
+      oscType : "message",
+      args : args
+    }
+  );
+  sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
+
+
 }
 
 
