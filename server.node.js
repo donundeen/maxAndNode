@@ -33,6 +33,7 @@ var osc = require('osc-min');
 var fs = require('fs');
 var util = require('util');
 
+
 var twit = new twitter({
   consumer_key: twitterConsumerKey,
   consumer_secret: twitterConsumerSecret,
@@ -53,12 +54,71 @@ var donMaxBotCommands= {
   'rhythm' :  function(args){ runCommandRhythm(args);},
   'b' :  function(args){ runCommandBpm(args);},
   'bpm' :  function(args){ runCommandBpm(args);},
+  'h' :  function(args){ runCommandHelp(args);},
+  '?' :  function(args){ runCommandHelp(args);},
+  'help' :  function(args){ runCommandHelp(args);},
 
-}
+};
+
+var commandHelp = [
+  {
+    'regex' : /(s|search)$/,
+    'command' : 'search',
+    'short_command' : 's',
+    'usage' : 'search SEARCHSTRING',
+    'example' : 'search cats',
+    'description' : 'search twitter for string. send images, words, etc to performer' 
+  },
+  {
+    'regex' : /(c|chord)$/,
+    'command' : 'chord',
+    'short_command' : 'c',
+    'usage' : 'chord CHORDNAME',
+    'example' : 'chord Gm7b5',
+    'description' : 'send a chord to the performer' 
+  },
+  {
+    'regex' : /(r|rhythm)$/,
+    'command' : 'rhythm',
+    'short_command' : 'r',
+    'usage' : 'rhythm PATTERN',
+    'example' : 'rhythm . .. . . ',
+    'description' : 'spaces are rests, dots are beats.' 
+  },
+  {
+    'regex' : /(b|bpm)$/,
+    'command' : 'bpm',
+    'short_command' : 'b',
+    'usage' : 'bpm BEATS PER MINUTE',
+    'example' : 'bpm 140',
+    'description' : 'set the tempo' 
+  }
+];
+
+comar = []; 
+scomar = []
+$(commandHelp).each(function(index, com){ 
+  comar.push(com.command);
+  scomar.push(com.short_command);
+});
+var helpdesc = comar.join(',') + " ("+scomar.join(',')+")";
+
+commandHelp.push(
+  {
+    'regex' : /$/,
+    'command' : 'help',
+    'short_command' : 'h',
+    'usage' : 'help COMMAND',
+    'example' : 'help bpm',
+    'description' : 'get help! commands are ' + helpdesc
+  }
+);
 
 
 
-// sending example
+
+
+// sending to Max,  example
 var sender  = dgram.createSocket("udp4");
 var buf = osc.toBuffer(
 {
@@ -95,6 +155,9 @@ listener.bind(11000);
 
 // testing the processing of urls
 //processUrls(["http://t.co/sj3hNDmq"]);
+
+
+//parseTweetCommand("@donmaxbot h");
 
 
 // search twitter for new orders
@@ -439,7 +502,7 @@ function sortTweets(resultsArray){
 function parseTweetCommand(tweetCommand){
   tweetCommand = tweetCommand.trim();
   console.log("parsing command: " + tweetCommand);
-  var pattr = /^\@donmaxbot\s+([\S]+)\s+(.*)$/;
+  var pattr = /^\@donmaxbot\s+([\S]+)(\s+(.*))?$/;
   var matches = tweetCommand.match(pattr);
   var command = "";
   if(matches){
@@ -511,6 +574,7 @@ function runCommandBpm(bpmString){
 
 // take a string that represents a chord, turn it into the full range of midi notes, and send to max
 function runCommandChord(chordString){
+  chordString = chordString.trim();
   console.log("processing chord " + chordString);
 
   var chord = teoria.chord(chordString);
@@ -551,4 +615,39 @@ function runCommandChord(chordString){
     }
   );
   sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
+}
+
+function runCommandHelp(helpString){
+  // help command is either :
+  // h, ? , or help alone. 
+  // - that returns a list of possible commands
+  // [h|help|?] <command> returns explanation of that command. 
+  /*
+      'regex' : '(b|bpm)$',
+    'command' : 'bpm',
+    'short_command' : 'b',
+    'usage' : 'bpm BEATS PER MINUTE',
+    'example' : 'bpm 140',
+    'description' : 'set the tempo' 
+    */
+  if(!helpString){helpString = "";}  
+  helpString = helpString.trim();
+  var msg = "";
+  $(commandHelp).each(function(index, command){
+    if(helpString.match(command.regex)){
+      msg += command.command + "\n";
+      msg += command.description + "\n";
+      msg += "usage: "+command.usage + "\n";
+      msg += "eg: " + command.example;
+
+      console.log(msg);
+      console.log(msg.length);      
+      if(msg.length< 140){
+        twit.updateStatus(msg,{}, function(err){console.log("in callback"); console.log(err);});
+      }
+      return false;
+    }
+
+  });
+
 }
