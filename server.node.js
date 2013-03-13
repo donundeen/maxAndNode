@@ -54,6 +54,8 @@ var donMaxBotCommands= {
   'rhythm' :  function(args){ runCommandRhythm(args);},
   'b' :  function(args){ runCommandBpm(args);},
   'bpm' :  function(args){ runCommandBpm(args);},
+  'r' :  function(args){ runCommandRestart(args);},
+  'restart' :  function(args){ runCommandRestart(args);},
   'h' :  function(args){ runCommandHelp(args);},
   '?' :  function(args){ runCommandHelp(args);},
   'help' :  function(args){ runCommandHelp(args);},
@@ -659,6 +661,24 @@ function runCommandChord(chordString){
   );
   sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
 }
+
+function runCommandRestart(restartArgs){
+  var args = {type: "string",
+              value : "1"};
+
+  // now send back to Max
+  var sender  = dgram.createSocket("udp4");
+  var buf = osc.toBuffer(
+    {
+      address : "restart",
+      oscType : "message",
+      args : args
+    }
+  );
+  sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
+
+}
+
 
 function runCommandHelp(helpString){
   // help command is either :
