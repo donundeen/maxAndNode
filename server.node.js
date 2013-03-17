@@ -54,7 +54,7 @@ var donMaxBotCommands= {
   'rhythm' :  function(args){ runCommandRhythm(args);},
   'b' :  function(args){ runCommandBpm(args);},
   'bpm' :  function(args){ runCommandBpm(args);},
-  'r' :  function(args){ runCommandRestart(args);},
+  'rs' :  function(args){ runCommandRestart(args);},
   'restart' :  function(args){ runCommandRestart(args);},
   'h' :  function(args){ runCommandHelp(args);},
   '?' :  function(args){ runCommandHelp(args);},
