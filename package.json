@@ -1,0 +1,23 @@
+{
+  "name": "maxAndNode",
+  "version": "0.1.0",
+  "description": "an app creating a performance based on twitter-sent commands",
+  "author": "don undeen <donundeen@yahoo.com>",
+  "dependencies": {
+    "follow-redirects": "0.0.x",
+    "mtwitter": "1.0.x",
+    "request": "2.16.x",
+    "jquery": "1.8.x",
+    "teoria": "0.1.x",
+    "osc-min": "0.0.x"
+  },
+  "devDependencies": {
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  },
+  "scripts": {
+
+  }
+}
