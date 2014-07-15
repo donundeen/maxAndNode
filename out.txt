@@ -1,0 +1,1394 @@
+parsing command: @donmaxbot h
+[ '@donmaxbot h',
+  'h',
+  undefined,
+  undefined,
+  index: 0,
+  input: '@donmaxbot h' ]
+command: h
+args: undefined
+function is function (args){ runCommandHelp(args);}
+help
+get help! commands are search,chord,rhythm,bpm (s,c,r,b)
+usage: help COMMAND
+eg: help bpm
+.690
+99
+checking command @donmaxbot h for urls, using pattern undefined
+[ '', index: 0, input: '@donmaxbot h' ]
+processurls
+[ '', index: 0, input: '@donmaxbot h' ]
+parsing command: @donmaxbot r  . .. 987 .23 .2. 
+[ '@donmaxbot r  . .. 987 .23 .2. ',
+  'r',
+  ' . .. 987 .23 .2. ',
+  '. .. 987 .23 .2. ',
+  index: 0,
+  input: '@donmaxbot r  . .. 987 .23 .2. ' ]
+command: r
+args:  . .. 987 .23 .2. 
+function is function (args){ runCommandRhythm(args);}
+processing rhythm ' . .. 987 .23 .2. '
+|0|.|0|..|0|987|0|.23|0|.2.|0|
+|0||.||0||.||.||0|987|0||.23||0||.2||.||0|
+|0|||1|||0|||1||||1|||0|987|0||.23||0||.2|||1|||0|
+0|1|0|1|1|0|987|0|.23|0|.2|1|0
+[ '0', '1', '0', '1', '1', '0', '987', '0', '.23', '0', '.2', '1', '0' ]
+0
+now  0
+1
+now  1
+0
+now  0
+1
+now  1
+1
+now  1
+0
+now  0
+987
+now  0.987
+0
+now  0
+.23
+now  .23
+0
+now  0
+.2
+now  .2
+1
+now  1
+0
+now  0
+checking command @donmaxbot r  . .. 987 .23 .2.  for urls, using pattern undefined
+[ '', index: 0, input: '@donmaxbot r  . .. 987 .23 .2. ' ]
+processurls
+[ '', index: 0, input: '@donmaxbot r  . .. 987 .23 .2. ' ]
+
+
+searching for @donmaxbot orders since id 0
+server listening 0.0.0.0:11000
+got results
+{ statuses: 
+   [ { metadata: [Object],
+       created_at: 'Fri Jun 20 22:01:55 +0000 2014',
+       id: 480108309114920960,
+       id_str: '480108309114920960',
+       text: '@donmaxbot s beautifuldata',
+       source: '<a href="https://about.twitter.com/products/tweetdeck" rel="nofollow">TweetDeck</a>',
+       truncated: false,
+       in_reply_to_status_id: null,
+       in_reply_to_status_id_str: null,
+       in_reply_to_user_id: 1235597988,
+       in_reply_to_user_id_str: '1235597988',
+       in_reply_to_screen_name: 'donmaxbot',
+       user: [Object],
+       geo: null,
+       coordinates: null,
+       place: null,
+       contributors: null,
+       retweet_count: 0,
+       favorite_count: 0,
+       entities: [Object],
+       favorited: false,
+       retweeted: false,
+       lang: 'en' },
+     { metadata: [Object],
+       created_at: 'Fri Jun 20 21:25:48 +0000 2014',
+       id: 480099219425214460,
+       id_str: '480099219425214464',
+       text: '@donmaxbot s pic',
+       source: '<a href="https://about.twitter.com/products/tweetdeck" rel="nofollow">TweetDeck</a>',
+       truncated: false,
+       in_reply_to_status_id: null,
+       in_reply_to_status_id_str: null,
+       in_reply_to_user_id: 1235597988,
+       in_reply_to_user_id_str: '1235597988',
+       in_reply_to_screen_name: 'donmaxbot',
+       user: [Object],
+       geo: null,
+       coordinates: null,
+       place: null,
+       contributors: null,
+       retweet_count: 0,
+       favorite_count: 0,
+       entities: [Object],
+       favorited: false,
+       retweeted: false,
+       lang: 'en' },
+     { metadata: [Object],
+       created_at: 'Fri Jun 20 20:42:34 +0000 2014',
+       id: 480088339979067400,
+       id_str: '480088339979067392',
+       text: '@donmaxbot chord G7',
+       source: '<a href="https://about.twitter.com/products/tweetdeck" rel="nofollow">TweetDeck</a>',
+       truncated: false,
+       in_reply_to_status_id: null,
+       in_reply_to_status_id_str: null,
+       in_reply_to_user_id: 1235597988,
+       in_reply_to_user_id_str: '1235597988',
+       in_reply_to_screen_name: 'donmaxbot',
+       user: [Object],
+       geo: null,
+       coordinates: null,
+       place: null,
+       contributors: null,
+       retweet_count: 0,
+       favorite_count: 0,
+       entities: [Object],
+       favorited: false,
+       retweeted: false,
+       lang: 'vi' },
+     { metadata: [Object],
+       created_at: 'Fri Jun 20 20:42:06 +0000 2014',
+       id: 480088222970544100,
+       id_str: '480088222970544128',
+       text: '@donmaxbot r . .. . ...',
+       source: '<a href="https://about.twitter.com/products/tweetdeck" rel="nofollow">TweetDeck</a>',
+       truncated: false,
+       in_reply_to_status_id: null,
+       in_reply_to_status_id_str: null,
+       in_reply_to_user_id: 1235597988,
+       in_reply_to_user_id_str: '1235597988',
+       in_reply_to_screen_name: 'donmaxbot',
+       user: [Object],
+       geo: null,
+       coordinates: null,
+       place: null,
+       contributors: null,
+       retweet_count: 0,
+       favorite_count: 0,
+       entities: [Object],
+       favorited: false,
+       retweeted: false,
+       lang: 'en' },
+     { metadata: [Object],
+       created_at: 'Fri Jun 20 20:39:32 +0000 2014',
+       id: 480087577660096500,
+       id_str: '480087577660096513',
+       text: '@donmaxbot b 120',
+       source: '<a href="https://about.twitter.com/products/tweetdeck" rel="nofollow">TweetDeck</a>',
+       truncated: false,
+       in_reply_to_status_id: null,
+       in_reply_to_status_id_str: null,
+       in_reply_to_user_id: 1235597988,
+       in_reply_to_user_id_str: '1235597988',
+       in_reply_to_screen_name: 'donmaxbot',
+       user: [Object],
+       geo: null,
+       coordinates: null,
+       place: null,
+       contributors: null,
+       retweet_count: 0,
+       favorite_count: 0,
+       entities: [Object],
+       favorited: false,
+       retweeted: false,
+       lang: 'et' },
+     { metadata: [Object],
+       created_at: 'Fri Jun 20 17:28:41 +0000 2014',
+       id: 480039546152026100,
+       id_str: '480039546152026112',
+       text: '@donmaxbot s beautifuldata',
+       source: '<a href="https://about.twitter.com/products/tweetdeck" rel="nofollow">TweetDeck</a>',
+       truncated: false,
+       in_reply_to_status_id: null,
+       in_reply_to_status_id_str: null,
+       in_reply_to_user_id: 1235597988,
+       in_reply_to_user_id_str: '1235597988',
+       in_reply_to_screen_name: 'donmaxbot',
+       user: [Object],
+       geo: null,
+       coordinates: null,
+       place: null,
+       contributors: null,
+       retweet_count: 0,
+       favorite_count: 0,
+       entities: [Object],
+       favorited: false,
+       retweeted: false,
+       lang: 'en' } ],
+  search_metadata: 
+   { completed_in: 0.015,
+     max_id: 480108309114920960,
+     max_id_str: '480108309114920960',
+     query: '%40donmaxbot',
+     refresh_url: '?since_id=480108309114920960&q=%40donmaxbot&include_entities=1',
+     count: 20,
+     since_id: 0,
+     since_id_str: '0' } }
+********************************************
+@donmaxbot s beautifuldata
+480039546152026100
+lastTweetId : 480039546152026100
+parsing command: @donmaxbot s beautifuldata
+[ '@donmaxbot s beautifuldata',
+  's',
+  ' beautifuldata',
+  'beautifuldata',
+  index: 0,
+  input: '@donmaxbot s beautifuldata' ]
+command: s
+args:  beautifuldata
+function is function (args){ runCommandSearchTwitter(args);}
+searching twitter for  beautifuldata
+searching for  beautifuldata
+checking command @donmaxbot s beautifuldata for urls, using pattern /(http:\/\/\S+)/g
+null
+processurls
+null
+********************************************
+@donmaxbot b 120
+480087577660096500
+lastTweetId : 480087577660096500
+parsing command: @donmaxbot b 120
+[ '@donmaxbot b 120',
+  'b',
+  ' 120',
+  '120',
+  index: 0,
+  input: '@donmaxbot b 120' ]
+command: b
+args:  120
+function is function (args){ runCommandBpm(args);}
+processing bpm  120
+checking command @donmaxbot b 120 for urls, using pattern /(http:\/\/\S+)/g
+null
+processurls
+null
+********************************************
+@donmaxbot r . .. . ...
+480088222970544100
+lastTweetId : 480088222970544100
+parsing command: @donmaxbot r . .. . ...
+[ '@donmaxbot r . .. . ...',
+  'r',
+  ' . .. . ...',
+  '. .. . ...',
+  index: 0,
+  input: '@donmaxbot r . .. . ...' ]
+command: r
+args:  . .. . ...
+function is function (args){ runCommandRhythm(args);}
+processing rhythm ' . .. . ...'
+|0|.|0|..|0|.|0|...
+|0||.||0||.||.||0||.||0||.||.||.|
+|0|||1|||0|||1||||1|||0|||1|||0|||1||||1||||1||
+0|1|0|1|1|0|1|0|1|1|1
+[ '0', '1', '0', '1', '1', '0', '1', '0', '1', '1', '1' ]
+0
+now  0
+1
+now  1
+0
+now  0
+1
+now  1
+1
+now  1
+0
+now  0
+1
+now  1
+0
+now  0
+1
+now  1
+1
+now  1
+1
+now  1
+checking command @donmaxbot r . .. . ... for urls, using pattern /(http:\/\/\S+)/g
+null
+processurls
+null
+********************************************
+@donmaxbot chord G7
+480088339979067400
+lastTweetId : 480088339979067400
+parsing command: @donmaxbot chord G7
+[ '@donmaxbot chord G7',
+  'chord',
+  ' G7',
+  'G7',
+  index: 0,
+  input: '@donmaxbot chord G7' ]
+command: chord
+args:  G7
+function is function (args){ runCommandChord(args);}
+processing chord G7
+checking command @donmaxbot chord G7 for urls, using pattern /(http:\/\/\S+)/g
+null
+processurls
+null
+********************************************
+@donmaxbot s pic
+480099219425214460
+lastTweetId : 480099219425214460
+parsing command: @donmaxbot s pic
+[ '@donmaxbot s pic',
+  's',
+  ' pic',
+  'pic',
+  index: 0,
+  input: '@donmaxbot s pic' ]
+command: s
+args:  pic
+function is function (args){ runCommandSearchTwitter(args);}
+searching twitter for  pic
+searching for  pic
+checking command @donmaxbot s pic for urls, using pattern /(http:\/\/\S+)/g
+null
+processurls
+null
+********************************************
+@donmaxbot s beautifuldata
+480108309114920960
+lastTweetId : 480108309114920960
+parsing command: @donmaxbot s beautifuldata
+[ '@donmaxbot s beautifuldata',
+  's',
+  ' beautifuldata',
+  'beautifuldata',
+  index: 0,
+  input: '@donmaxbot s beautifuldata' ]
+command: s
+args:  beautifuldata
+function is function (args){ runCommandSearchTwitter(args);}
+searching twitter for  beautifuldata
+searching for  beautifuldata
+checking command @donmaxbot s beautifuldata for urls, using pattern /(http:\/\/\S+)/g
+null
+processurls
+null
+in callback
+null
+************ Search Results ********************************
+hey #beautifuldata crew! dinner is ON for 8pm at http://t.co/7qzg4q8S1h
+crnr of highland and central
+https://t.co/eNi1Ny5G9b
+key heybeautifuldatacrewdinnerisONforpmathttptcoqzgqS1hcrnrofhighlandandcentralhttpstcoeNi1NyGb
+[ 'http://t.co/7qzg4q8S1h' ]
+wordList
+[ 'hey',
+  'crew',
+  'dinner',
+  'is',
+  'ON',
+  'for',
+  '8pm',
+  'at',
+  'crnr',
+  'of',
+  'highland',
+  'and',
+  'central',
+  'https',
+  't',
+  'co',
+  'eNi1Ny5G9b' ]
+processurls
+[ 'http://t.co/7qzg4q8S1h' ]
+url is  http://t.co/7qzg4q8S1h
+************ Search Results ********************************
+@donmaxbot s beautifuldata
+key donmaxbotsbeautifuldata
+null
+wordList
+[ 's', 'beautifuldata' ]
+processurls
+null
+************ Search Results ********************************
+RT @fkraeutli: Lanfranco Aceti making sure he has the attention of the audience by presenting cats &amp; sex #beautifulData @lanfrancoaceti
+key LanfrancoAcetimakingsurehehastheattentionoftheaudiencebypresentingcatsampsexbeautifulDatalanfrancoaceti
+null
+wordList
+[ 'RT',
+  'Lanfranco',
+  'Aceti',
+  'making',
+  'sure',
+  'he',
+  'has',
+  'the',
+  'attention',
+  'of',
+  'the',
+  'audience',
+  'by',
+  'presenting',
+  'cats',
+  'amp',
+  'sex' ]
+processurls
+null
+************ Search Results ********************************
+RT @Radishwak: A timely word i learned today, from Yiddish: sitzfleisch. To endure by sitting. Perseverance of the backside on the flatside…
+key AtimelywordilearnedtodayfromYiddishsitzfleischToendurebysittingPerseveranceofthebacksideontheflatside
+null
+wordList
+[ 'RT',
+  'A',
+  'timely',
+  'word',
+  'i',
+  'learned',
+  'today',
+  'from',
+  'Yiddish',
+  'sitzfleisch',
+  'To',
+  'endure',
+  'by',
+  'sitting',
+  'Perseverance',
+  'of',
+  'the',
+  'backside',
+  'on',
+  'the',
+  'flatside' ]
+processurls
+null
+************ Search Results ********************************
+A timely word i learned today, from Yiddish: sitzfleisch. To endure by sitting. Perseverance of the backside on the flatside. #beautifuldata
+key AtimelywordilearnedtodayfromYiddishsitzfleischToendurebysittingPerseveranceofthebacksideontheflatsidebeautifuldata
+null
+wordList
+[ 'A',
+  'timely',
+  'word',
+  'i',
+  'learned',
+  'today',
+  'from',
+  'Yiddish',
+  'sitzfleisch',
+  'To',
+  'endure',
+  'by',
+  'sitting',
+  'Perseverance',
+  'of',
+  'the',
+  'backside',
+  'on',
+  'the',
+  'flatside' ]
+processurls
+null
+************ Search Results ********************************
+RT @lubar: Museums are good at running events (exhibits); they need to get better at running services; the web is a service. —@sebchan #bea…
+key Museumsaregoodatrunningeventsexhibitstheyneedtogetbetteratrunningservicesthewebisaservicesebchanbea
+null
+wordList
+[ 'RT',
+  'Museums',
+  'are',
+  'good',
+  'at',
+  'running',
+  'events',
+  'exhibits',
+  'they',
+  'need',
+  'to',
+  'get',
+  'better',
+  'at',
+  'running',
+  'services',
+  'the',
+  'web',
+  'is',
+  'a',
+  'service' ]
+processurls
+null
+************ Search Results ********************************
+RT @lubar: Museums are good at running events (exhibits); they need to get better at running services; the web is a service. —@sebchan #bea…
+key Museumsaregoodatrunningeventsexhibitstheyneedtogetbetteratrunningservicesthewebisaservicesebchanbea
+have this one already, skipping
+************ Search Results ********************************
+RT @lubar: Museums are good at running events (exhibits); they need to get better at running services; the web is a service. —@sebchan #bea…
+key Museumsaregoodatrunningeventsexhibitstheyneedtogetbetteratrunningservicesthewebisaservicesebchanbea
+have this one already, skipping
+************ Search Results ********************************
+RT @lubar: Museums are good at running events (exhibits); they need to get better at running services; the web is a service. —@sebchan #bea…
+key Museumsaregoodatrunningeventsexhibitstheyneedtogetbetteratrunningservicesthewebisaservicesebchanbea
+have this one already, skipping
+************ Search Results ********************************
+RT @lubar: Museums are good at running events (exhibits); they need to get better at running services; the web is a service. —@sebchan #bea…
+key Museumsaregoodatrunningeventsexhibitstheyneedtogetbetteratrunningservicesthewebisaservicesebchanbea
+have this one already, skipping
+************ Search Results ********************************
+show me the data! #beautifuldata
+key showmethedatabeautifuldata
+null
+wordList
+[ 'show', 'me', 'the', 'data' ]
+processurls
+null
+************ Search Results ********************************
+RT @fkraeutli: Getting real workshopy at #beautifulData http://t.co/FzXPqP0RE2
+key GettingrealworkshopyatbeautifulDatahttptcoFzXPqP0RE
+[ 'http://t.co/FzXPqP0RE2' ]
+wordList
+[ 'RT', 'Getting', 'real', 'workshopy', 'at' ]
+processurls
+[ 'http://t.co/FzXPqP0RE2' ]
+url is  http://t.co/FzXPqP0RE2
+************ Search Results ********************************
+Getting real workshopy at #beautifulData http://t.co/FzXPqP0RE2
+key GettingrealworkshopyatbeautifulDatahttptcoFzXPqP0RE
+have this one already, skipping
+************ Search Results ********************************
+RT @lubar: Museums should have seamful, not seamless, interfaces: reveal the seams in the world. —@sebchan #beautifuldata
+key Museumsshouldhaveseamfulnotseamlessinterfacesrevealtheseamsintheworldsebchanbeautifuldata
+null
+wordList
+[ 'RT',
+  'Museums',
+  'should',
+  'have',
+  'seamful',
+  'not',
+  'seamless',
+  'interfaces',
+  'reveal',
+  'the',
+  'seams',
+  'in',
+  'the',
+  'world' ]
+processurls
+null
+************ Search Results ********************************
+Team frictionless pulley lives on. @richbs @fkraeutli @HistoryDesign #metapulley #beautifuldata http://t.co/xdyBMR6PfV
+key TeamfrictionlesspulleylivesonrichbsfkraeutliHistoryDesignmetapulleybeautifuldatahttptcoxdyBMRPfV
+[ 'http://t.co/xdyBMR6PfV' ]
+wordList
+[ 'Team', 'frictionless', 'pulley', 'lives', 'on' ]
+processurls
+[ 'http://t.co/xdyBMR6PfV' ]
+url is  http://t.co/xdyBMR6PfV
+************ Search Results ********************************
+Must RT @nealstimler: #musetech can do more w/ curators, educators to celebrate collections. Getting excited about that at #beautifuldata.
+key MustRTnealstimlermusetechcandomorewcuratorseducatorstocelebratecollectionsGettingexcitedaboutthatatbeautifuldata
+null
+wordList
+[ 'Must',
+  'RT',
+  'can',
+  'do',
+  'more',
+  'w',
+  'curators',
+  'educators',
+  'to',
+  'celebrate',
+  'collections',
+  'Getting',
+  'excited',
+  'about',
+  'that',
+  'at' ]
+processurls
+null
+************ Search Results ********************************
+RT @yloukissas: we tend to think of accessibility in terms of compliance, rather than considering the gradient of human needs. @ablerism #b…
+key wetendtothinkofaccessibilityintermsofcomplianceratherthanconsideringthegradientofhumanneedsablerismb
+null
+wordList
+[ 'RT',
+  'we',
+  'tend',
+  'to',
+  'think',
+  'of',
+  'accessibility',
+  'in',
+  'terms',
+  'of',
+  'compliance',
+  'rather',
+  'than',
+  'considering',
+  'the',
+  'gradient',
+  'of',
+  'human',
+  'needs' ]
+processurls
+null
+************ Search Results ********************************
+RT @nealstimler: #musetech workers can do more with curators and educators to celebrate collections. I'm getting very excited about that at…
+key musetechworkerscandomorewithcuratorsandeducatorstocelebratecollectionsImgettingveryexcitedaboutthatat
+null
+wordList
+[ 'RT',
+  'workers',
+  'can',
+  'do',
+  'more',
+  'with',
+  'curators',
+  'and',
+  'educators',
+  'to',
+  'celebrate',
+  'collections',
+  'I',
+  'm',
+  'getting',
+  'very',
+  'excited',
+  'about',
+  'that',
+  'at' ]
+processurls
+null
+************ Search Results ********************************
+@donmaxbot s beautifuldata
+key donmaxbotsbeautifuldata
+have this one already, skipping
+************ Search Results ********************************
+RT @MAM_Chelsea: Hear hear, and vice versa! MT @nealstimler: #musetech can do more with curators and educators to celebrate collections. #b…
+key RTMAMChelseaHearhearandviceversaMTnealstimlermusetechcandomorewithcuratorsandeducatorstocelebratecollectionsb
+null
+wordList
+[ 'RT',
+  'Hear',
+  'hear',
+  'and',
+  'vice',
+  'versa',
+  'MT',
+  'can',
+  'do',
+  'more',
+  'with',
+  'curators',
+  'and',
+  'educators',
+  'to',
+  'celebrate',
+  'collections' ]
+processurls
+null
+The file was saved!
+The file was saved!
+The file was saved!
+************ Search Results ********************************
+hey #beautifuldata crew! dinner is ON for 8pm at http://t.co/7qzg4q8S1h
+crnr of highland and central
+https://t.co/eNi1Ny5G9b
+key heybeautifuldatacrewdinnerisONforpmathttptcoqzgqS1hcrnrofhighlandandcentralhttpstcoeNi1NyGb
+have this one already, skipping
+************ Search Results ********************************
+@donmaxbot s beautifuldata
+key donmaxbotsbeautifuldata
+have this one already, skipping
+************ Search Results ********************************
+RT @fkraeutli: Lanfranco Aceti making sure he has the attention of the audience by presenting cats &amp; sex #beautifulData @lanfrancoaceti
+key LanfrancoAcetimakingsurehehastheattentionoftheaudiencebypresentingcatsampsexbeautifulDatalanfrancoaceti
+have this one already, skipping
+************ Search Results ********************************
+RT @Radishwak: A timely word i learned today, from Yiddish: sitzfleisch. To endure by sitting. Perseverance of the backside on the flatside…
+key AtimelywordilearnedtodayfromYiddishsitzfleischToendurebysittingPerseveranceofthebacksideontheflatside
+have this one already, skipping
+************ Search Results ********************************
+A timely word i learned today, from Yiddish: sitzfleisch. To endure by sitting. Perseverance of the backside on the flatside. #beautifuldata
+key AtimelywordilearnedtodayfromYiddishsitzfleischToendurebysittingPerseveranceofthebacksideontheflatsidebeautifuldata
+have this one already, skipping
+************ Search Results ********************************
+RT @lubar: Museums are good at running events (exhibits); they need to get better at running services; the web is a service. —@sebchan #bea…
+key Museumsaregoodatrunningeventsexhibitstheyneedtogetbetteratrunningservicesthewebisaservicesebchanbea
+have this one already, skipping
+************ Search Results ********************************
+RT @lubar: Museums are good at running events (exhibits); they need to get better at running services; the web is a service. —@sebchan #bea…
+key Museumsaregoodatrunningeventsexhibitstheyneedtogetbetteratrunningservicesthewebisaservicesebchanbea
+have this one already, skipping
+************ Search Results ********************************
+RT @lubar: Museums are good at running events (exhibits); they need to get better at running services; the web is a service. —@sebchan #bea…
+key Museumsaregoodatrunningeventsexhibitstheyneedtogetbetteratrunningservicesthewebisaservicesebchanbea
+have this one already, skipping
+************ Search Results ********************************
+RT @lubar: Museums are good at running events (exhibits); they need to get better at running services; the web is a service. —@sebchan #bea…
+key Museumsaregoodatrunningeventsexhibitstheyneedtogetbetteratrunningservicesthewebisaservicesebchanbea
+have this one already, skipping
+************ Search Results ********************************
+RT @lubar: Museums are good at running events (exhibits); they need to get better at running services; the web is a service. —@sebchan #bea…
+key Museumsaregoodatrunningeventsexhibitstheyneedtogetbetteratrunningservicesthewebisaservicesebchanbea
+have this one already, skipping
+************ Search Results ********************************
+show me the data! #beautifuldata
+key showmethedatabeautifuldata
+have this one already, skipping
+************ Search Results ********************************
+RT @fkraeutli: Getting real workshopy at #beautifulData http://t.co/FzXPqP0RE2
+key GettingrealworkshopyatbeautifulDatahttptcoFzXPqP0RE
+have this one already, skipping
+************ Search Results ********************************
+Getting real workshopy at #beautifulData http://t.co/FzXPqP0RE2
+key GettingrealworkshopyatbeautifulDatahttptcoFzXPqP0RE
+have this one already, skipping
+************ Search Results ********************************
+RT @lubar: Museums should have seamful, not seamless, interfaces: reveal the seams in the world. —@sebchan #beautifuldata
+key Museumsshouldhaveseamfulnotseamlessinterfacesrevealtheseamsintheworldsebchanbeautifuldata
+have this one already, skipping
+************ Search Results ********************************
+Team frictionless pulley lives on. @richbs @fkraeutli @HistoryDesign #metapulley #beautifuldata http://t.co/xdyBMR6PfV
+key TeamfrictionlesspulleylivesonrichbsfkraeutliHistoryDesignmetapulleybeautifuldatahttptcoxdyBMRPfV
+have this one already, skipping
+************ Search Results ********************************
+Must RT @nealstimler: #musetech can do more w/ curators, educators to celebrate collections. Getting excited about that at #beautifuldata.
+key MustRTnealstimlermusetechcandomorewcuratorseducatorstocelebratecollectionsGettingexcitedaboutthatatbeautifuldata
+have this one already, skipping
+************ Search Results ********************************
+RT @yloukissas: we tend to think of accessibility in terms of compliance, rather than considering the gradient of human needs. @ablerism #b…
+key wetendtothinkofaccessibilityintermsofcomplianceratherthanconsideringthegradientofhumanneedsablerismb
+have this one already, skipping
+************ Search Results ********************************
+RT @nealstimler: #musetech workers can do more with curators and educators to celebrate collections. I'm getting very excited about that at…
+key musetechworkerscandomorewithcuratorsandeducatorstocelebratecollectionsImgettingveryexcitedaboutthatat
+have this one already, skipping
+************ Search Results ********************************
+@donmaxbot s beautifuldata
+key donmaxbotsbeautifuldata
+have this one already, skipping
+************ Search Results ********************************
+RT @MAM_Chelsea: Hear hear, and vice versa! MT @nealstimler: #musetech can do more with curators and educators to celebrate collections. #b…
+key RTMAMChelseaHearhearandviceversaMTnealstimlermusetechcandomorewithcuratorsandeducatorstocelebratecollectionsb
+have this one already, skipping
+************ Search Results ********************************
+RT @SexoVicioso: Sólo amigos... http://t.co/9dJuG7Sokh
+key SloamigoshttptcodJuGSokh
+[ 'http://t.co/9dJuG7Sokh' ]
+wordList
+[ 'RT', 'S', 'lo', 'amigos' ]
+processurls
+[ 'http://t.co/9dJuG7Sokh' ]
+url is  http://t.co/9dJuG7Sokh
+************ Search Results ********************************
+Frouxo? RT @tiaoca: Responde aí! http://t.co/11S3UVlirC
+key FrouxoRTtiaocaRespondeahttptco11SUVlirC
+[ 'http://t.co/11S3UVlirC' ]
+wordList
+[ 'Frouxo', 'RT', 'Responde', 'a' ]
+processurls
+[ 'http://t.co/11S3UVlirC' ]
+url is  http://t.co/11S3UVlirC
+************ Search Results ********************************
+RT @sexlb: SOCORRO, EU NÃO TÔ BEM. tchau! http://t.co/V5AqrK4mKR
+key SOCORROEUNOTBEMtchauhttptcoVAqrKmKR
+[ 'http://t.co/V5AqrK4mKR' ]
+wordList
+[ 'RT', 'SOCORRO', 'EU', 'N', 'O', 'T', 'BEM', 'tchau' ]
+processurls
+[ 'http://t.co/V5AqrK4mKR' ]
+url is  http://t.co/V5AqrK4mKR
+************ Search Results ********************************
+RT @BoiceINA: Like daddy like doggie 😂 lol http://t.co/eNEFyOMIpe (via ribbonchariots)
+key LikedaddylikedoggielolhttptcoeNEFyOMIpeviaribbonchariots
+[ 'http://t.co/eNEFyOMIpe' ]
+wordList
+[ 'RT',
+  'Like',
+  'daddy',
+  'like',
+  'doggie',
+  'lol',
+  'via',
+  'ribbonchariots' ]
+processurls
+[ 'http://t.co/eNEFyOMIpe' ]
+url is  http://t.co/eNEFyOMIpe
+************ Search Results ********************************
+RT @madoodao: ฮือฮา! 'แองเจลินา โจลี' เยี่ยมค่ายลี้ภัยแม่ฮ่องสอน หลังเพลิงวอดเสียหายยับ - ข่าวไทยรัฐออนไลน์ http://t.co/nby27R75uC http://t…
+key httptconbyRuChttpt
+[ 'http://t.co/nby27R75uC', 'http://t…' ]
+wordList
+[ 'RT' ]
+processurls
+[ 'http://t.co/nby27R75uC', 'http://t…' ]
+url is  http://t.co/nby27R75uC
+url is  http://t…
+************ Search Results ********************************
+RT @FastCoCreate: How @VolvoTrucks pulled off an epic split and a game-changing campaign: http://t.co/XjdpbeqEp6 #CannesLions http://t.co/0…
+key HowVolvoTruckspulledoffanepicsplitandagamechangingcampaignhttptcoXjdpbeqEpCannesLionshttptco0
+[ 'http://t.co/XjdpbeqEp6', 'http://t.co/0…' ]
+wordList
+[ 'RT',
+  'How',
+  'pulled',
+  'off',
+  'an',
+  'epic',
+  'split',
+  'and',
+  'a',
+  'game',
+  'changing',
+  'campaign' ]
+processurls
+[ 'http://t.co/XjdpbeqEp6', 'http://t.co/0…' ]
+url is  http://t.co/XjdpbeqEp6
+url is  http://t.co/0…
+************ Search Results ********************************
+RT @BruceVH: The more you read, the more you see of the world. http://t.co/rVP3fUuPhD #PersonalGrowth #Wisdom
+key ThemoreyoureadthemoreyouseeoftheworldhttptcorVPfUuPhDPersonalGrowthWisdom
+[ 'http://t.co/rVP3fUuPhD' ]
+wordList
+[ 'RT',
+  'The',
+  'more',
+  'you',
+  'read',
+  'the',
+  'more',
+  'you',
+  'see',
+  'of',
+  'the',
+  'world' ]
+processurls
+[ 'http://t.co/rVP3fUuPhD' ]
+url is  http://t.co/rVP3fUuPhD
+************ Search Results ********************************
+RT @Alerobie: @SophiaMuller4 @slekrhvi @jorsan_1974 @monkeymeeu @Boogie__1969 @el_paparrin69 @_TumejorSonris @dardeaux @MissySixx69 http://…
+key SophiaMullerslekrhvijorsan1monkeymeeuBoogie1elpaparrinTumejorSonrisdardeauxMissySixxhttp
+[ 'http://…' ]
+wordList
+[ 'RT' ]
+processurls
+[ 'http://…' ]
+url is  http://…
+************ Search Results ********************************
+RT @makingdom_: ほう http://t.co/ewp2l8DI2w
+key RTmakingdomhttptcoewplDIw
+[ 'http://t.co/ewp2l8DI2w' ]
+wordList
+[ 'RT' ]
+processurls
+[ 'http://t.co/ewp2l8DI2w' ]
+url is  http://t.co/ewp2l8DI2w
+************ Search Results ********************************
+RT @AuddiiMoBIhh_: Man Yall and these #ButThatsNoneOfMyBusiness photos Lmfaooooo http://t.co/FMXK4rMN0o
+key RTAuddiiMoBIhhManYallandtheseButThatsNoneOfMyBusinessphotosLmfaooooohttptcoFMXKrMN0o
+[ 'http://t.co/FMXK4rMN0o' ]
+wordList
+[ 'RT', 'Man', 'Yall', 'and', 'these', 'photos', 'Lmfaooooo' ]
+processurls
+[ 'http://t.co/FMXK4rMN0o' ]
+url is  http://t.co/FMXK4rMN0o
+************ Search Results ********************************
+RT @mandyRgillespie: Daddy's sunshine, mommy's angel http://t.co/ParqI5qyz4
+key DaddyssunshinemommysangelhttptcoParqIqyz
+[ 'http://t.co/ParqI5qyz4' ]
+wordList
+[ 'RT', 'Daddy', 's', 'sunshine', 'mommy', 's', 'angel' ]
+processurls
+[ 'http://t.co/ParqI5qyz4' ]
+url is  http://t.co/ParqI5qyz4
+************ Search Results ********************************
+“@WW1DUpdates: God on stage in Paris - 20.06.2014 -S #64 (via insider @UnFauxChinois) http://t.co/59iJ8hiMO5”
+key WW1DUpdatesGodonstageinParis0001SviainsiderUnFauxChinoishttptcoiJhiMO
+[ 'http://t.co/59iJ8hiMO5”' ]
+wordList
+[ 'God',
+  'on',
+  'stage',
+  'in',
+  'Paris',
+  '20',
+  '06',
+  '2014',
+  'S',
+  'via',
+  'insider' ]
+processurls
+[ 'http://t.co/59iJ8hiMO5”' ]
+url is  http://t.co/59iJ8hiMO5
+************ Search Results ********************************
+RT @kosuke432: メールもろくに打てない父、ラインを始めるも変換で大混乱なう http://t.co/QiGqNmhYC5
+key RTkosukehttptcoQiGqNmhYC
+[ 'http://t.co/QiGqNmhYC5' ]
+wordList
+[ 'RT' ]
+processurls
+[ 'http://t.co/QiGqNmhYC5' ]
+url is  http://t.co/QiGqNmhYC5
+************ Search Results ********************************
+RT @Rory_London: http://t.co/mKrQ5o1hkm
+key RTRoryLondonhttptcomKrQo1hkm
+[ 'http://t.co/mKrQ5o1hkm' ]
+wordList
+[ 'RT' ]
+processurls
+[ 'http://t.co/mKrQ5o1hkm' ]
+url is  http://t.co/mKrQ5o1hkm
+************ Search Results ********************************
+RT @luanchocolatao: ´´Eu sou brasileiro com muito orgulho com muito amor´´ http://t.co/Kh7VmUPZyN
+key EusoubrasileirocommuitoorgulhocommuitoamorhttptcoKhVmUPZyN
+[ 'http://t.co/Kh7VmUPZyN' ]
+wordList
+[ 'RT',
+  'Eu',
+  'sou',
+  'brasileiro',
+  'com',
+  'muito',
+  'orgulho',
+  'com',
+  'muito',
+  'amor' ]
+processurls
+[ 'http://t.co/Kh7VmUPZyN' ]
+url is  http://t.co/Kh7VmUPZyN
+************ Search Results ********************************
+RT @kosuke432: メールもろくに打てない父、ラインを始めるも変換で大混乱なう http://t.co/QiGqNmhYC5
+key RTkosukehttptcoQiGqNmhYC
+have this one already, skipping
+************ Search Results ********************************
+RT @deadmau5: .@McLarenAuto the meowclaren can has parking spot! drove it home. and i fucking LOVE THIS CAR. thank you! http://t.co/UQZ5vOX…
+key RTdeadmauMcLarenAutothemeowclarencanhasparkingspotdroveithomeandifuckingLOVETHISCARthankyouhttptcoUQZvOX
+[ 'http://t.co/UQZ5vOX…' ]
+wordList
+[ 'RT',
+  'the',
+  'meowclaren',
+  'can',
+  'has',
+  'parking',
+  'spot',
+  'drove',
+  'it',
+  'home',
+  'and',
+  'i',
+  'fucking',
+  'LOVE',
+  'THIS',
+  'CAR',
+  'thank',
+  'you' ]
+processurls
+[ 'http://t.co/UQZ5vOX…' ]
+url is  http://t.co/UQZ5vOX…
+************ Search Results ********************************
+RT @laurentrainor3: @mattcardle nice to c u matt &lt;3 http://t.co/KK5mfSQccI
+key RTlaurentrainormattcardlenicetocumattlthttptcoKKmfSQccI
+[ 'http://t.co/KK5mfSQccI' ]
+wordList
+[ 'RT', 'nice', 'to', 'c', 'u', 'matt', 'lt', '3' ]
+processurls
+[ 'http://t.co/KK5mfSQccI' ]
+url is  http://t.co/KK5mfSQccI
+************ Search Results ********************************
+RT @JazRox__: Lol @ this picture 😂 http://t.co/Eh8pEbYOgE
+key RTJazRoxLolthispicturehttptcoEhpEbYOgE
+[ 'http://t.co/Eh8pEbYOgE' ]
+wordList
+[ 'RT', 'Lol', 'this', 'picture' ]
+processurls
+[ 'http://t.co/Eh8pEbYOgE' ]
+url is  http://t.co/Eh8pEbYOgE
+************ Search Results ********************************
+hey @Albi_SideArms are you jealous you're not here? @LEGIQN @KYR_SP33DY @JahovasWitniss @NobodyEpic http://t.co/6SOONrHj0P
+key heyAlbiSideArmsareyoujealousyourenothereLEGIQNKYRSPDYJahovasWitnissNobodyEpichttptcoSOONrHj0P
+[ 'http://t.co/6SOONrHj0P' ]
+wordList
+[ 'hey', 'are', 'you', 'jealous', 'you', 're', 'not', 'here' ]
+processurls
+[ 'http://t.co/6SOONrHj0P' ]
+url is  http://t.co/6SOONrHj0P
+Got error for url http://t… : getaddrinfo ENOTFOUND
+The file was saved!
+The file was saved!
+The file was saved!
+The file was saved!
+The file was saved!
+The file was saved!
+The file was saved!
+The file was saved!
+The file was saved!
+The file was saved!
+The file was saved!
+The file was saved!
+The file was saved!
+The file was saved!
+The file was saved!
+The file was saved!
+The file was saved!
+The file was saved!
+The file was saved!
+The file was saved!
+The file was saved!
+Got error for url http://… : getaddrinfo ENOTFOUND
+got file at  http://t.co/7qzg4q8S1h
+examining for images http://t.co/7qzg4q8S1h
+[]
+The data file was saved!
+got file at  http://t.co/FzXPqP0RE2
+examining for images http://t.co/FzXPqP0RE2
+1 got image https://pbs.twimg.com/media/Bql96BQCUAAJfEQ.jpg
+https://pbs.twimg.com/media/Bql96BQCUAAJfEQ.jpg
+[ 'https://pbs.twimg.com/media/Bql96BQCUAAJfEQ.jpg' ]
+trying to dl image https://pbs.twimg.com/media/Bql96BQCUAAJfEQ.jpg
+https://pbs.twimg.com/media/Bql96BQCUAAJfEQ.jpg
+dling from https://pbs.twimg.com/media/Bql96BQCUAAJfEQ.jpg
+writing  to /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/Bql96BQCUAAJfEQ.jpg
+got file at  http://t.co/xdyBMR6PfV
+examining for images http://t.co/xdyBMR6PfV
+1 got image https://pbs.twimg.com/media/Bql3zl-CcAAT9l7.jpg
+https://pbs.twimg.com/media/Bql3zl-CcAAT9l7.jpg
+[ 'https://pbs.twimg.com/media/Bql3zl-CcAAT9l7.jpg' ]
+trying to dl image https://pbs.twimg.com/media/Bql3zl-CcAAT9l7.jpg
+https://pbs.twimg.com/media/Bql3zl-CcAAT9l7.jpg
+dling from https://pbs.twimg.com/media/Bql3zl-CcAAT9l7.jpg
+writing  to /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/Bql3zl-CcAAT9l7.jpg
+The data file was saved!
+The data file was saved!
+got file at  http://t.co/11S3UVlirC
+examining for images http://t.co/11S3UVlirC
+1 got image https://pbs.twimg.com/media/Bqm5MXfIcAAJeCY.jpg
+https://pbs.twimg.com/media/Bqm5MXfIcAAJeCY.jpg
+[ 'https://pbs.twimg.com/media/Bqm5MXfIcAAJeCY.jpg' ]
+trying to dl image https://pbs.twimg.com/media/Bqm5MXfIcAAJeCY.jpg
+https://pbs.twimg.com/media/Bqm5MXfIcAAJeCY.jpg
+dling from https://pbs.twimg.com/media/Bqm5MXfIcAAJeCY.jpg
+writing  to /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/Bqm5MXfIcAAJeCY.jpg
+The data file was saved!
+got file at  http://t.co/9dJuG7Sokh
+examining for images http://t.co/9dJuG7Sokh
+1 got image https://pbs.twimg.com/media/BkApR4UIAAAcokE.jpg
+https://pbs.twimg.com/media/BkApR4UIAAAcokE.jpg
+[ 'https://pbs.twimg.com/media/BkApR4UIAAAcokE.jpg' ]
+trying to dl image https://pbs.twimg.com/media/BkApR4UIAAAcokE.jpg
+https://pbs.twimg.com/media/BkApR4UIAAAcokE.jpg
+dling from https://pbs.twimg.com/media/BkApR4UIAAAcokE.jpg
+writing  to /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/BkApR4UIAAAcokE.jpg
+The data file was saved!
+image file written
+image file written
+image file written
+image file written
+
+
+searching for @donmaxbot orders since id 480108309114920960
+got results
+{ statuses: [],
+  search_metadata: 
+   { completed_in: 0.006,
+     max_id: 480130273787793400,
+     max_id_str: '480130273787793408',
+     query: '%40donmaxbot',
+     refresh_url: '?since_id=480130273787793408&q=%40donmaxbot&include_entities=1',
+     count: 20,
+     since_id: 480108309114920960,
+     since_id_str: '480108309114920960' } }
+
+
+searching for @donmaxbot orders since id 480108309114920960
+got results
+{ statuses: [],
+  search_metadata: 
+   { completed_in: 0.007,
+     max_id: 480130313046081540,
+     max_id_str: '480130313046081536',
+     query: '%40donmaxbot',
+     refresh_url: '?since_id=480130313046081536&q=%40donmaxbot&include_entities=1',
+     count: 20,
+     since_id: 480108309114920960,
+     since_id_str: '480108309114920960' } }
+
+
+searching for @donmaxbot orders since id 480108309114920960
+got results
+{ statuses: [],
+  search_metadata: 
+   { completed_in: 0.016,
+     max_id: 480130355802820600,
+     max_id_str: '480130355802820609',
+     query: '%40donmaxbot',
+     refresh_url: '?since_id=480130355802820609&q=%40donmaxbot&include_entities=1',
+     count: 20,
+     since_id: 480108309114920960,
+     since_id_str: '480108309114920960' } }
+got file at  http://t.co/0…
+examining for images http://t.co/0…
+[]
+The data file was saved!
+got file at  http://t.co/XjdpbeqEp6
+examining for images http://t.co/XjdpbeqEp6
+2 got image http://a.fastcompany.net/multisite_files/fastcompany/imagecache/620x350/poster/2014/06/3031654-poster-p-1-the-story-behind-the-epic-split.jpg
+http://a.fastcompany.net/multisite_files/fastcompany/imagecache/620x350/poster/2014/06/3031654-poster-p-1-the-story-behind-the-epic-split.jpg
+[ 'http://a.fastcompany.net/multisite_files/fastcompany/imagecache/620x350/poster/2014/06/3031654-poster-p-1-the-story-behind-the-epic-split.jpg' ]
+trying to dl image http://a.fastcompany.net/multisite_files/fastcompany/imagecache/620x350/poster/2014/06/3031654-poster-p-1-the-story-behind-the-epic-split.jpg
+http://a.fastcompany.net/multisite_files/fastcompany/imagecache/620x350/poster/2014/06/3031654-poster-p-1-the-story-behind-the-epic-split.jpg
+dling from http://a.fastcompany.net/multisite_files/fastcompany/imagecache/620x350/poster/2014/06/3031654-poster-p-1-the-story-behind-the-epic-split.jpg
+writing  to /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/3031654-poster-p-1-the-story-behind-the-epic-split.jpg
+The data file was saved!
+image file written
+got file at  http://t.co/V5AqrK4mKR
+examining for images http://t.co/V5AqrK4mKR
+1 got image https://pbs.twimg.com/media/BqRvKeuIEAEiBf6.jpg
+https://pbs.twimg.com/media/BqRvKeuIEAEiBf6.jpg
+[ 'https://pbs.twimg.com/media/BqRvKeuIEAEiBf6.jpg' ]
+trying to dl image https://pbs.twimg.com/media/BqRvKeuIEAEiBf6.jpg
+https://pbs.twimg.com/media/BqRvKeuIEAEiBf6.jpg
+dling from https://pbs.twimg.com/media/BqRvKeuIEAEiBf6.jpg
+writing  to /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/BqRvKeuIEAEiBf6.jpg
+The data file was saved!
+got file at  http://t.co/eNEFyOMIpe
+examining for images http://t.co/eNEFyOMIpe
+1 got image https://pbs.twimg.com/media/BqlU9u5CYAAUf5G.jpg
+https://pbs.twimg.com/media/BqlU9u5CYAAUf5G.jpg
+[ 'https://pbs.twimg.com/media/BqlU9u5CYAAUf5G.jpg' ]
+trying to dl image https://pbs.twimg.com/media/BqlU9u5CYAAUf5G.jpg
+https://pbs.twimg.com/media/BqlU9u5CYAAUf5G.jpg
+dling from https://pbs.twimg.com/media/BqlU9u5CYAAUf5G.jpg
+writing  to /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/BqlU9u5CYAAUf5G.jpg
+The data file was saved!
+got file at  http://t.co/rVP3fUuPhD
+examining for images http://t.co/rVP3fUuPhD
+1 got image https://pbs.twimg.com/media/BYYtusLCEAA-c6x.jpg
+https://pbs.twimg.com/media/BYYtusLCEAA-c6x.jpg
+[ 'https://pbs.twimg.com/media/BYYtusLCEAA-c6x.jpg' ]
+trying to dl image https://pbs.twimg.com/media/BYYtusLCEAA-c6x.jpg
+https://pbs.twimg.com/media/BYYtusLCEAA-c6x.jpg
+dling from https://pbs.twimg.com/media/BYYtusLCEAA-c6x.jpg
+writing  to /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/BYYtusLCEAA-c6x.jpg
+The data file was saved!
+image file written
+image file written
+image file written
+got file at  http://t.co/nby27R75uC
+examining for images http://t.co/nby27R75uC
+[]
+The data file was saved!
+
+
+searching for @donmaxbot orders since id 480108309114920960
+got results
+{ statuses: [],
+  search_metadata: 
+   { completed_in: 0.006,
+     max_id: 480130397146456060,
+     max_id_str: '480130397146456065',
+     query: '%40donmaxbot',
+     refresh_url: '?since_id=480130397146456065&q=%40donmaxbot&include_entities=1',
+     count: 20,
+     since_id: 480108309114920960,
+     since_id_str: '480108309114920960' } }
+
+
+searching for @donmaxbot orders since id 480108309114920960
+got results
+{ statuses: [],
+  search_metadata: 
+   { completed_in: 0.007,
+     max_id: 480130439504359400,
+     max_id_str: '480130439504359426',
+     query: '%40donmaxbot',
+     refresh_url: '?since_id=480130439504359426&q=%40donmaxbot&include_entities=1',
+     count: 20,
+     since_id: 480108309114920960,
+     since_id_str: '480108309114920960' } }
+
+
+searching for @donmaxbot orders since id 480108309114920960
+got results
+{ statuses: [],
+  search_metadata: 
+   { completed_in: 0.006,
+     max_id: 480130485654663200,
+     max_id_str: '480130485654663169',
+     query: '%40donmaxbot',
+     refresh_url: '?since_id=480130485654663169&q=%40donmaxbot&include_entities=1',
+     count: 20,
+     since_id: 480108309114920960,
+     since_id_str: '480108309114920960' } }
+got file at  http://t.co/ewp2l8DI2w
+examining for images http://t.co/ewp2l8DI2w
+1 got image https://pbs.twimg.com/media/BqnDgy0CEAE_Ui7.jpg
+https://pbs.twimg.com/media/BqnDgy0CEAE_Ui7.jpg
+[ 'https://pbs.twimg.com/media/BqnDgy0CEAE_Ui7.jpg' ]
+trying to dl image https://pbs.twimg.com/media/BqnDgy0CEAE_Ui7.jpg
+https://pbs.twimg.com/media/BqnDgy0CEAE_Ui7.jpg
+dling from https://pbs.twimg.com/media/BqnDgy0CEAE_Ui7.jpg
+writing  to /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/BqnDgy0CEAE_Ui7.jpg
+got file at  http://t.co/ParqI5qyz4
+examining for images http://t.co/ParqI5qyz4
+1 got image https://pbs.twimg.com/media/BqnBjRkIcAAXIZj.jpg
+https://pbs.twimg.com/media/BqnBjRkIcAAXIZj.jpg
+[ 'https://pbs.twimg.com/media/BqnBjRkIcAAXIZj.jpg' ]
+trying to dl image https://pbs.twimg.com/media/BqnBjRkIcAAXIZj.jpg
+https://pbs.twimg.com/media/BqnBjRkIcAAXIZj.jpg
+dling from https://pbs.twimg.com/media/BqnBjRkIcAAXIZj.jpg
+writing  to /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/BqnBjRkIcAAXIZj.jpg
+The data file was saved!
+The data file was saved!
+got file at  http://t.co/59iJ8hiMO5
+examining for images http://t.co/59iJ8hiMO5
+1 got image https://pbs.twimg.com/media/BqnDgsWIYAEtUQL.jpg
+https://pbs.twimg.com/media/BqnDgsWIYAEtUQL.jpg
+[ 'https://pbs.twimg.com/media/BqnDgsWIYAEtUQL.jpg' ]
+trying to dl image https://pbs.twimg.com/media/BqnDgsWIYAEtUQL.jpg
+https://pbs.twimg.com/media/BqnDgsWIYAEtUQL.jpg
+dling from https://pbs.twimg.com/media/BqnDgsWIYAEtUQL.jpg
+writing  to /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/BqnDgsWIYAEtUQL.jpg
+got file at  http://t.co/FMXK4rMN0o
+examining for images http://t.co/FMXK4rMN0o
+[]
+The data file was saved!
+The data file was saved!
+got file at  http://t.co/QiGqNmhYC5
+examining for images http://t.co/QiGqNmhYC5
+1 got image https://pbs.twimg.com/media/Bqh4t7WCYAAeGl_.jpg
+https://pbs.twimg.com/media/Bqh4t7WCYAAeGl_.jpg
+[ 'https://pbs.twimg.com/media/Bqh4t7WCYAAeGl_.jpg' ]
+trying to dl image https://pbs.twimg.com/media/Bqh4t7WCYAAeGl_.jpg
+https://pbs.twimg.com/media/Bqh4t7WCYAAeGl_.jpg
+dling from https://pbs.twimg.com/media/Bqh4t7WCYAAeGl_.jpg
+writing  to /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/Bqh4t7WCYAAeGl_.jpg
+The data file was saved!
+image file written
+image file written
+image file written
+image file written
+
+
+searching for @donmaxbot orders since id 480108309114920960
+got results
+{ statuses: [],
+  search_metadata: 
+   { completed_in: 0.196,
+     max_id: 480130524782923800,
+     max_id_str: '480130524782923776',
+     query: '%40donmaxbot',
+     refresh_url: '?since_id=480130524782923776&q=%40donmaxbot&include_entities=1',
+     count: 20,
+     since_id: 480108309114920960,
+     since_id_str: '480108309114920960' } }
+
+
+searching for @donmaxbot orders since id 480108309114920960
+got results
+{ statuses: [],
+  search_metadata: 
+   { completed_in: 0.039,
+     max_id: 480130569570103300,
+     max_id_str: '480130569570103298',
+     query: '%40donmaxbot',
+     refresh_url: '?since_id=480130569570103298&q=%40donmaxbot&include_entities=1',
+     count: 20,
+     since_id: 480108309114920960,
+     since_id_str: '480108309114920960' } }
+
+
+searching for @donmaxbot orders since id 480108309114920960
+got results
+{ statuses: [],
+  search_metadata: 
+   { completed_in: 0.008,
+     max_id: 480130609830846460,
+     max_id_str: '480130609830846466',
+     query: '%40donmaxbot',
+     refresh_url: '?since_id=480130609830846466&q=%40donmaxbot&include_entities=1',
+     count: 20,
+     since_id: 480108309114920960,
+     since_id_str: '480108309114920960' } }
+got file at  http://t.co/UQZ5vOX…
+examining for images http://t.co/UQZ5vOX…
+[]
+The data file was saved!
+got file at  http://t.co/KK5mfSQccI
+examining for images http://t.co/KK5mfSQccI
+1 got image https://pbs.twimg.com/media/BqmzuqkIIAEElUK.jpg
+https://pbs.twimg.com/media/BqmzuqkIIAEElUK.jpg
+[ 'https://pbs.twimg.com/media/BqmzuqkIIAEElUK.jpg' ]
+trying to dl image https://pbs.twimg.com/media/BqmzuqkIIAEElUK.jpg
+https://pbs.twimg.com/media/BqmzuqkIIAEElUK.jpg
+dling from https://pbs.twimg.com/media/BqmzuqkIIAEElUK.jpg
+writing  to /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/BqmzuqkIIAEElUK.jpg
+got file at  http://t.co/6SOONrHj0P
+examining for images http://t.co/6SOONrHj0P
+1 got image https://pbs.twimg.com/media/BqnD5dgCAAAgawa.jpg
+https://pbs.twimg.com/media/BqnD5dgCAAAgawa.jpg
+[ 'https://pbs.twimg.com/media/BqnD5dgCAAAgawa.jpg' ]
+trying to dl image https://pbs.twimg.com/media/BqnD5dgCAAAgawa.jpg
+https://pbs.twimg.com/media/BqnD5dgCAAAgawa.jpg
+dling from https://pbs.twimg.com/media/BqnD5dgCAAAgawa.jpg
+writing  to /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/BqnD5dgCAAAgawa.jpg
+The data file was saved!
+The data file was saved!
+got file at  http://t.co/Kh7VmUPZyN
+examining for images http://t.co/Kh7VmUPZyN
+1 got image https://pbs.twimg.com/media/Bo0a5MOIcAAjQSY.jpg
+https://pbs.twimg.com/media/Bo0a5MOIcAAjQSY.jpg
+[ 'https://pbs.twimg.com/media/Bo0a5MOIcAAjQSY.jpg' ]
+trying to dl image https://pbs.twimg.com/media/Bo0a5MOIcAAjQSY.jpg
+https://pbs.twimg.com/media/Bo0a5MOIcAAjQSY.jpg
+dling from https://pbs.twimg.com/media/Bo0a5MOIcAAjQSY.jpg
+writing  to /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/Bo0a5MOIcAAjQSY.jpg
+got file at  http://t.co/mKrQ5o1hkm
+examining for images http://t.co/mKrQ5o1hkm
+1 got image https://pbs.twimg.com/media/Bqm_ESzCUAEgMW7.jpg
+https://pbs.twimg.com/media/Bqm_ESzCUAEgMW7.jpg
+[ 'https://pbs.twimg.com/media/Bqm_ESzCUAEgMW7.jpg' ]
+trying to dl image https://pbs.twimg.com/media/Bqm_ESzCUAEgMW7.jpg
+https://pbs.twimg.com/media/Bqm_ESzCUAEgMW7.jpg
+dling from https://pbs.twimg.com/media/Bqm_ESzCUAEgMW7.jpg
+writing  to /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/Bqm_ESzCUAEgMW7.jpg
+The data file was saved!
+got file at  http://t.co/Eh8pEbYOgE
+examining for images http://t.co/Eh8pEbYOgE
+1 got image https://pbs.twimg.com/media/BqmxbIHCUAAJMPt.jpg
+https://pbs.twimg.com/media/BqmxbIHCUAAJMPt.jpg
+[ 'https://pbs.twimg.com/media/BqmxbIHCUAAJMPt.jpg' ]
+trying to dl image https://pbs.twimg.com/media/BqmxbIHCUAAJMPt.jpg
+https://pbs.twimg.com/media/BqmxbIHCUAAJMPt.jpg
+dling from https://pbs.twimg.com/media/BqmxbIHCUAAJMPt.jpg
+writing  to /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/BqmxbIHCUAAJMPt.jpg
+The data file was saved!
+The data file was saved!
+image file written
+image file written
+image file written
+image file written
+image file written
+
+
+searching for @donmaxbot orders since id 480108309114920960
+got results
+{ statuses: [],
+  search_metadata: 
+   { completed_in: 0.009,
+     max_id: 480130651317088260,
+     max_id_str: '480130651317088257',
+     query: '%40donmaxbot',
+     refresh_url: '?since_id=480130651317088257&q=%40donmaxbot&include_entities=1',
+     count: 20,
+     since_id: 480108309114920960,
+     since_id_str: '480108309114920960' } }
+
+
+searching for @donmaxbot orders since id 480108309114920960
+got results
+{ statuses: [],
+  search_metadata: 
+   { completed_in: 0.006,
+     max_id: 480130690693210100,
+     max_id_str: '480130690693210112',
+     query: '%40donmaxbot',
+     refresh_url: '?since_id=480130690693210112&q=%40donmaxbot&include_entities=1',
+     count: 20,
+     since_id: 480108309114920960,
+     since_id_str: '480108309114920960' } }
+
+
+searching for @donmaxbot orders since id 480108309114920960
+got results
+undefined

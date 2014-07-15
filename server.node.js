@@ -11,6 +11,12 @@ var twitterAccessTokenKey = secrets.twitterAccessTokenKey ;
 var twitterAccessTokenSecret = secrets.twitterAccessTokenSecret ;
 
 
+
+var sys = require('sys')
+var exec = require('child_process').exec;
+
+
+
 var twitterBotName = "@donmaxbot";
 var lastTweetId = '0';
 
@@ -20,7 +26,7 @@ var http = require('follow-redirects').http;
 var twitter = require('mtwitter');
 var crypto = require('crypto');
 
-var fs = require('fs');
+var fs = require('graceful-fs');
 var path = require('path');
 var request = require('request');
 
@@ -32,6 +38,9 @@ var osc = require('osc-min');
 
 var fs = require('fs');
 var util = require('util');
+
+
+var foundTweets = {};
 
 
 var twit = new twitter({
@@ -48,6 +57,8 @@ var twit = new twitter({
 var donMaxBotCommands= {
   's' : function(args){ runCommandSearchTwitter(args);},
   'search' :  function(args){ runCommandSearchTwitter(args);},
+  'a' : function(args){ runCommandSearchArt(args);},
+  'art' :  function(args){ runCommandSearchArt(args);},
   'c' :  function(args){ runCommandChord(args);},
   'chord' :  function(args){ runCommandChord(args);},
   'r' :  function(args){ runCommandRhythm(args);},
@@ -78,6 +89,14 @@ var commandHelp = [
     'usage' : 'chord CHORDNAME',
     'example' : 'chord Gm7b5',
     'description' : 'send a chord to the performer' 
+  },
+  {
+    'regex' : /(a|art)$/,
+    'command' : 'art',
+    'short_command' : 'a',
+    'usage' : 'art ARTSEARCHTERM',
+    'example' : 'art chair',
+    'description' : 'search art databases for matches, send images, words, etc to performer' 
   },
   {
     'regex' : /(r|rhythm)$/,
@@ -121,7 +140,9 @@ commandHelp.push(
 
 
 // sending to Max,  example
+
 var sender  = dgram.createSocket("udp4");
+/*
 var buf = osc.toBuffer(
 {
 	address : "sayword",
@@ -132,7 +153,7 @@ var buf = osc.toBuffer(
 }
 );
 sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
-
+*/
 
 
 
@@ -158,14 +179,60 @@ listener.bind(11000);
 // testing the processing of urls
 //processUrls(["http://t.co/sj3hNDmq"]);
 
-parseTweetCommand("@donmaxbot h");
+//parseTweetCommand("@donmaxbot h");
 
-parseTweetCommand("@donmaxbot r  . .. 987 .23 .2. ");
+//parseTweetCommand("@donmaxbot r  . .. 987 .23 .2. ");
 
 
 // search twitter for new orders
 getTweetOrders();
 setInterval(getTweetOrders, 10000);
+
+
+
+function getTweetOrders(){
+
+  msg = twitterBotName;
+  console.log("\n\nsearching for " +msg + " orders since id " + lastTweetId);
+  twit.search(msg, {count: 5,since_id: lastTweetId}, function(err, data) {
+//  twit.search(msg, {}, function(err, data) {
+  
+//   fs.writeFile('out.txt', util.inspect(data, false, null));
+    console.log("got results");
+//    console.log(data);
+if(!data){
+  console.log("no statuses " + err);
+}
+    data.statuses = sortTweets(data.statuses);
+//    console.log(data);
+    $(data.statuses).each(function(index, value){
+      console.log('********************************************');
+//      console.log(value);
+
+      // split the text up into individual words
+
+      // extract other useful features, like images, links, etc.
+      var tweettext = value.text;
+      var tweetid = value.id;
+      console.log(tweettext);
+      console.log(tweetid);
+
+      if(lastTweetId == tweetid){
+        return true;
+      }
+      lastTweetId = tweetid;
+      console.log("lastTweetId : " + lastTweetId);
+      parseTweetCommand(tweettext);
+
+    });
+
+
+ // console.log(data);
+  });
+}
+
+
+
 
 // processing messages sent from max (maybe this can me merged with messages from twitter itself?)
 function processMessage(msg, rInfo){
@@ -184,7 +251,7 @@ function processMessage(msg, rInfo){
 
 	switch (addr){
 		case "searchTweet":
-			searchTweet(msg);
+			searchTweet(msg, 0);
 			break;
 		default:
 			console.log("unknown address "  + addr);
@@ -199,7 +266,7 @@ var wordPattr = /(\w+)/g;
 var urlPattr = /(http:\/\/\S+)/g;
 
 
-function searchTweet(msg){
+function searchTweet(msg, numTimes){
 
 	/* twitter search results format:
 	{ completed_in: 0.012,
@@ -251,11 +318,17 @@ function searchTweet(msg){
 
 
 
-	twit.search(msg, {count: 1}, function(err, data) {
+	twit.search(msg, {count: 20}, function(err, data) {
 		
 //		fs.writeFile('out.txt', util.inspect(data, false. null));
   //  console.log(err);
 //    console.log(data);
+
+    if(err){
+      console.log("twitter search error");
+      console.log(err);
+      console.log(msg);
+    }
 
 		$(data.statuses).each(function(index, value){
       console.log('************ Search Results ********************************');
@@ -265,6 +338,16 @@ function searchTweet(msg){
 
       // extract other useful features, like images, links, etc.
       msg = value.text;
+
+      var msgkey = msg.replace(/^RT @[a-zA-Z]+:/, "");
+      msgkey = msgkey.replace(/[^0-1a-zA-Z]/g, "");
+      console.log("key " + msgkey);
+      if(foundTweets[msgkey]){
+        console.log("have this one already, skipping");
+        return true;
+      }
+      foundTweets[msgkey] = true;
+
       var names = msg.match(namePattr);
     //  console.log(names);
       msg = msg.replace(namePattr, ' ');
@@ -275,6 +358,8 @@ function searchTweet(msg){
       var urls = msg.match(urlPattr);
       console.log(urls);
       msg = msg.replace(urlPattr, ' ');
+      msg = msg.replace(/RT\W/,'');
+      msg = msg.replace(/(^|\W)gt\W/i,'');
       var words = msg.match(wordPattr);
     //  console.log(words);
 
@@ -294,12 +379,241 @@ function searchTweet(msg){
 	 // console.log(data);
 	});
 
+  // redo the search after some amoutn of time
 
+  // in minutes
+  var interval = numTimes * (Math.random() * 3);
+
+  interval = interval * 60 * 1000;
+
+  setTimeout(function(){searchTweet(msg, numTimes+1)}, interval);
 
 }
 
 
+function searchArt(searchTerm){
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\nsearching art APIs for " + searchTerm);
+  searchTerm = searchTerm.trim();
+  searchMet(searchTerm);
+  searchWolf(searchTerm);
+  searchICAPhilla(searchTerm);  
+  searchVA(searchTerm);  
+  searchTate(searchTerm);  
+}
+
+
+
+function searchMet(searchTerm){
+  var metSearchUrl = "http://scrapi.org/search/"+searchTerm+"?ao=on&noqs=true";
+//  console.log("url is "+ metSearchUrl);
+  request(metSearchUrl, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log("^^^^^^^^^^^^^^^^^^^^^^^ MET  got results from " + metSearchUrl);
+  //    console.log(body) // Print the google web page.
+      var data = JSON.parse(body);   //data.collection.items
+  //    console.log(data);
+      var i =0;
+      while(i < 5){
+          var index = Math.floor(Math.random()* data.collection.items.length);
+        
+        if(data.collection && data.collection.items[index] && data.collection.items[index].href){
+          parseMetScrapiUrl(data.collection.items[index].href);
+        }
+        i++;
+      }
+    }else{
+      console.log("error in metsearchrequest");
+      console.log(error);
+    }
+  });
+
+}
+
+function searchWolf(searchTerm){
+  var url = 'http://digital.wolfsonian.org/json/results/?t=' + encodeURI(searchTerm.trim());
+  request(url, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log("WOLF!!!!!   got results from " + url);
+      //console.log(body) // Print the google web page.
+      if(body && body.trim() != ""){
+        var data = JSON.parse(body);   //data.collection.items
+        console.log(data);
+        var i =0;
+        while(i < 5 && i < data.length){
+          var index = Math.floor(Math.random()* data.length);
+
+          if(data[index].collection_item){
+              var image = data[index].collection_item.thumb_url;
+              image = image.replace("thm.jpg",".jpg");
+              processImageUrls([image]);
+
+              if(data[index].collection_item.name){
+                console.log(data[index].collection_item.name);
+                var words = data[index].collection_item.name.trim().match(wordPattr);
+                console.log(words);
+                processWords(words);
+              }
+          }
+          i++;
+        }
+      }
+    }else{
+      console.log("error in searchWolf");
+      console.log(error);
+    }
+  });
+
+
+}
+
+function searchICAPhilla(searchTerm){
+  var url = 'http://icaphila.org/api/nodes.json?term='+ encodeURI(searchTerm);
+  request(url, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log("ICA!!!!!   got results from " + url);
+    //  console.log(body) // Print the google web page.
+      if(body && body.trim() != ""){
+        var data = JSON.parse(body);   //data.collection.items
+      //  console.log(data);
+        var i =0;
+        while(i < 5 && i < data.length){
+          var index = Math.floor(Math.random()* data.length);
+          if(data[index].excerpt_image && data[index].excerpt_image.large){
+              var image = data[index].excerpt_image.large.url;
+              image = 'http://icaphila.org/'+ image;
+              console.log("(((((((((((((((((((((((((((( ICAPHILLA ! " + image);
+              processImageUrls([image]);
+              if(data[index].name){
+                console.log(data[index].name.trim());
+                var words = data[index].name.trim().match(wordPattr);
+                console.log(words);                
+                processWords(words);
+              }
+
+          }
+          i++;
+        }
+      }
+    }else{
+      console.log("error in searchICAPhilla");
+      console.log(error);
+    }
+  });
+
+}
+
+function searchVA(searchTerm){
+  var url = 'http://www.vam.ac.uk/api/json/museumobject/search?q='+ encodeURI(searchTerm);
+
+  request(url, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log("VA!!!!!   got results from " + url);
+    //  console.log(body) // Print the google web page.
+      if(body && body.trim() != ""){
+        var data = JSON.parse(body);   //data.collection.items
+      //  console.log(data);
+        var i =0;
+        while(i < 5 && i < data.records.length){
+          var index = Math.floor(Math.random()* data.records.length);
+          if(data.records[index] && data.records[index].fields.primary_image_id){
+              var image = data.records[index].fields.primary_image_id;
+              var imagePath= 'http://media.vam.ac.uk/media/thira/collection_images/';
+              image = imagePath + image.substring(0,6) + "/"+image+"_jpg_l.jpg";
+              console.log("________________________________ V and A ! " + image);
+              processImageUrls([image]);
+              
+              if(data.records[index].fields.object){
+                console.log(data.records[index].fields.object.trim());
+                var words = data.records[index].fields.object.trim().match(wordPattr);
+                console.log(words);                
+                processWords(words);
+              }
+              
+
+          }
+          i++;
+        }
+      }
+    }else{
+      console.log("error in searchVA");
+      console.log(error);
+    }
+  });
+
+}
+
+//http://www.tate.org.uk/art/artworks.json?q=spoon
+//http://www.tate.org.uk/art/images/work/AR/AR00033_8.jpg
+function searchTate(searchTerm){
+  var url = 'http://www.tate.org.uk/art/artworks.json?q='+ encodeURI(searchTerm);
+
+  request(url, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log("TATE!!!!!   got results from " + url);
+    //  console.log(body) // Print the google web page.
+      if(body && body.trim() != ""){
+        var data = JSON.parse(body);   //data.collection.items
+      //  console.log(data);
+        var i =0;
+        while(i < 5 && i < data.results.length){
+          var index = Math.floor(Math.random()* data.results.length);
+          if(data.results[index] && data.results[index].masterImages && data.results[index].masterImages.length > 0 ){
+              var image = data.results[index].masterImages[0].sizes[0].file;
+              image = 'http://www.tate.org.uk/art/images/work/' +image;
+              console.log("++++++++++++++++++++++++++++++++++ TATE ! " + image);
+              processImageUrls([image]);
+
+              if(data.results[index].title){
+                console.log(data.results[index].title.trim());
+                var words = data.results[index].title.trim().match(wordPattr);
+                console.log(words);
+
+                processWords(words);
+              }
+
+
+          }
+          i++;
+        }
+      }
+    }else{
+      console.log("error in searchTate");
+      console.log(error);
+    }
+  });
+
+}
+
+
+
+function parseMetScrapiUrl(url){
+    request(url, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        console.log("got results from " + url);
+
+        console.log("\n\n%%%%%%%%%%%%%%%%%%%%%%%%%%%% MET DATA !!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+      //  console.log(body) // Print the google web page.
+        var data = JSON.parse(body);   //data.currentImage.imageUrl
+      //  console.log(data);
+        console.log(data.currentImage.imageUrl);
+        processImageUrls([data.currentImage.imageUrl]);
+        if(data.title && data.title.trim() != ""){
+          var words = data.title.trim().match(wordPattr);
+          processWords(words);
+        }
+        // if the image is "no image," then we don't want it.
+
+      }else{
+        console.log("error in scrapiRequest " + url);
+        console.log(error);
+      }
+    });
+}
+
+
 function processWords(wordList){
+  console.log("wordList");
+  console.log(wordList);
   var wordargs = [];
   $(wordList).each(function(i, word){
      var wordarg = {type: "string", value:word};
@@ -314,12 +628,33 @@ function processWords(wordList){
   }
   );
   sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
+
+/*
+  var buf2 = osc.toBuffer(
+  {
+    address : "sayword",
+    oscType : "message",
+    args : ["word"]        
+  }
+  );
+  sender.send(buf2, 0, buf2.length, 12000, '127.0.0.1');
+*/
+
 }
 
 function processUrls(urlList){
+  console.log("processurls");
   console.log(urlList); 
   $(urlList).each(function (i, url){
-    console.log(url);
+    url = url.replace(/”/,"").trim();
+
+    if(url.length == 0){
+      return true;
+    }
+
+    var getthisurl = url + "";
+
+    console.log("url is  " + getthisurl);
     var hash = crypto.createHash('md5').update(url).digest("hex");
     fs.writeFile("files/"+hash+".url.txt", url, function(err) {
       if(err) {
@@ -330,7 +665,7 @@ function processUrls(urlList){
     });
 
     // fetch urls
-    http.get(url, function(res){
+    http.get(getthisurl, function(res){
       var data = '';
       res.on('data', function (chunk) {
         //console.log("chunk");
@@ -339,20 +674,22 @@ function processUrls(urlList){
       });
       res.on('end', function(err){
         var doc = $(data); 
+        console.log("got file at  " + getthisurl);
 
         fs.writeFile("files/"+hash, data, function(err) {
           if(err) {
+            console.log("error getting file at ") + getthisurl;
             console.log(err);
           } else {
-            console.log("The file was saved!");
+            console.log("The data file was saved!");
           }
         });
 
-        examineWebpage(url, doc);
+        examineWebpage(getthisurl, doc);
 
       });
     }).on('error', function(e) {
-      console.log("Got error: " + e.message);
+      console.log("Got error for url " + getthisurl + " : " + e.message);
     });
   });
 
@@ -364,11 +701,23 @@ function processUrls(urlList){
 function examineWebpage(url, doc){
   var images= [];
 
-  console.log("examining " + url);
+  console.log("examining for images " + url);
 
   $("meta[og\\:image]", doc).each(function(i, image){
    // console.log(image);
     var imageVal = $(image).attr("og:\\image").trim();
+    if(imageVal.length > 0){
+      console.log("4 got image " + imageVal);
+      if(imageVal == ''){return true;}
+      console.log(imageVal);
+      images.push(imageVal);
+    }
+  });
+
+  $("img[alt='Embedded image permalink']", doc).each(function(i, image){
+   // console.log(image);
+    var imageVal = $(image).attr("src").trim();
+    console.log("1 got image " + imageVal);
     if(imageVal == ''){return true;}
     console.log(imageVal);
     images.push(imageVal);
@@ -377,6 +726,7 @@ function examineWebpage(url, doc){
   $("meta[property='og:image']", doc).each(function(i, image){
    // console.log(image);
     var imageVal = $(image).attr("content").trim();
+    console.log("2 got image " + imageVal);
     if(imageVal == ''){return true;}
     console.log(imageVal);
     images.push(imageVal);
@@ -385,6 +735,7 @@ function examineWebpage(url, doc){
   $("img.media-slideshow-image[src]", doc).each(function(i, image){
    // console.log(image);
     var imageVal = $(image).attr("src").trim();
+    console.log("3 got image " + imageVal);
     if(imageVal == ''){return true;}
     console.log(imageVal);
     images.push(imageVal);
@@ -420,6 +771,46 @@ function processImageUrls(images){
             .on('error', function(err){console.log("file write error " + err)})
             .on('close', function(event, filename){
               console.log("image file written");
+
+              // before sending image out, also figure out the histogram.
+              var cmd = "/usr/bin/python /Users/donundeen/htdocs/node/maxAndNode/colourpressure/colourpressure.py " + writepath;
+console.log(cmd);
+              var child = exec(cmd, function (error, stdout, stderr) {
+                console.log('stdout: ' + stdout);
+                console.log('stderr: ' + stderr);
+                var hist = stdout.replace(/"[^"]+",/,"");
+                console.log(hist);
+                var imagearg = {type: "string" , value: writepath + "|" + hist};
+//var regex = /"([^"]+)","([^"]+)"/g;
+/*
+var regex = /"((\([0-9]+,[0-9]+,[0-9]+\))\|?)+","((\([0-9]+,[0-9]+,[0-9]+\))\|?)+"/g;
+
+var matches = regex.exec(hist);
+if(matches){
+  console.log(matches);
+  console.log(matches[1]);
+  console.log(matches[2]);
+}
+*/
+                var buf = osc.toBuffer(
+                  {
+                    address : "image",
+                    oscType : "message",
+                    args : imagearg        
+                  }
+                );
+                sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
+                 
+                if (error !== null) {
+                  console.log('exec error: ' + error);
+                }
+              });
+// imageR: /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/DP116081.jpg|"(180,1,57)|(24,30,82)|(24,47,68)|(25,41,76)|(25,24,87)|(20,2,64)|(24,50,60)|(23,52,53)|(22,67,36)|(16,48,12)|(22,53,44)|(25,12,95)"
+ 
+
+
+
+/*
               var imagearg = {type: "string" , value: writepath};
               var buf = osc.toBuffer(
                 {
@@ -429,7 +820,9 @@ function processImageUrls(images){
                 }
                 );
                 sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
+*/
             }));
+
 
     }
 
@@ -458,44 +851,10 @@ function processTags(tagList){
 
 
 
-function getTweetOrders(){
-
-  msg = twitterBotName;
-  console.log("\n\nsearching for " +msg + " orders since id " + lastTweetId);
-  twit.search(msg, {count: 20,since_id: lastTweetId}, function(err, data) {
-//  twit.search(msg, {}, function(err, data) {
-  
-//   fs.writeFile('out.txt', util.inspect(data, false, null));
-    console.log("got results" + data.statuses.length);
-    data.statuses = sortTweets(data.statuses);
-//    console.log(data);
-    $(data.statuses).each(function(index, value){
-      console.log('********************************************');
-//      console.log(value);
-
-      // split the text up into individual words
-
-      // extract other useful features, like images, links, etc.
-      var tweettext = value.text;
-      var tweetid = value.id;
-      console.log(tweettext);
-      console.log(tweetid);
-
-      if(lastTweetId == tweetid){
-        return true;
-      }
-      lastTweetId = tweetid;
-      console.log("lastTweetId : " + lastTweetId);
-      parseTweetCommand(tweettext);
-
-    });
-
-
- // console.log(data);
-  });
-}
-
 function sortTweets(resultsArray){
+  if(!resultsArray){
+    return resultsArray;
+  }
   resultsArray.sort(function(a, b){
     return (a.id - b.id);
   });
@@ -543,7 +902,13 @@ function parseTweetCommand(tweetCommand){
 // run the searchtwee
 function runCommandSearchTwitter(searchString){
   console.log("searching twitter for " + searchString);
-  searchTweet(searchString);
+  searchTweet(searchString,0);
+}
+
+
+function runCommandSearchArt(searchString){
+  console.log("searching Art Databases for " + searchString);
+  searchArt(searchString);
 }
 
 
@@ -702,6 +1067,10 @@ function runCommandHelp(helpString){
       msg += command.description + "\n";
       msg += "usage: "+command.usage + "\n";
       msg += "eg: " + command.example;
+
+      rand = Math.random() + "";
+      rand = rand.substring(1,5);;
+      msg += "\n" + rand;
 
       console.log(msg);
       console.log(msg.length);      

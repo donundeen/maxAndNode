@@ -3,11 +3,12 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 6,
-			"minor" : 0,
-			"revision" : 8
+			"minor" : 1,
+			"revision" : 2,
+			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 8.0, 74.0, 1498.0, 987.0 ],
+		"rect" : [ 110.0, 86.0, 919.0, 672.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -27,6 +28,125 @@
 		"digest" : "",
 		"tags" : "",
 		"boxes" : [ 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-59",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 656.0, 474.0, 53.0, 20.0 ],
+					"text" : "print js2"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-55",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 512.0, 510.0, 53.0, 20.0 ],
+					"text" : "print js1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-49",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 540.0, 335.0, 64.0, 18.0 ],
+					"text" : "getVal foo"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-42",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 615.75, 373.5, 86.0, 18.0 ],
+					"text" : "setVal foo baz"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-41",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 440.0, 365.0, 84.0, 18.0 ],
+					"text" : "setVal foo bar"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-20",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 649.0, 428.0, 105.0, 20.0 ],
+					"saved_object_attributes" : 					{
+						"filename" : "dataManager.js",
+						"parameter_enable" : 0
+					}
+,
+					"text" : "js dataManager.js"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-17",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 489.0, 428.0, 105.0, 20.0 ],
+					"saved_object_attributes" : 					{
+						"filename" : "dataManager.js",
+						"parameter_enable" : 0
+					}
+,
+					"text" : "js dataManager.js"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-16",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 1664.0, 740.0, 109.0, 20.0 ],
+					"text" : "print sendingRvals"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -273,7 +393,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 2447.5, 770.0, 155.0, 34.0 ],
+					"patching_rect" : [ 2447.5, 770.0, 155.0, 33.0 ],
 					"text" : "using the energy values to get fractal values"
 				}
 
@@ -957,11 +1077,12 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 6,
-							"minor" : 0,
-							"revision" : 8
+							"minor" : 1,
+							"revision" : 2,
+							"architecture" : "x86"
 						}
 ,
-						"rect" : [ 4.0, 212.0, 1498.0, 831.0 ],
+						"rect" : [ 40.0, 181.0, 1240.0, 495.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2346,15 +2467,6 @@
 							}
 , 							{
 								"patchline" : 								{
-									"destination" : [ "obj-14", 0 ],
-									"disabled" : 0,
-									"hidden" : 0,
-									"source" : [ "obj-216", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
 									"destination" : [ "obj-31", 0 ],
 									"disabled" : 0,
 									"hidden" : 0,
@@ -2739,7 +2851,7 @@
  ]
 					}
 ,
-					"patching_rect" : [ 227.0, 253.5, 232.0, 80.0 ],
+					"patching_rect" : [ 227.0, 253.5, 232.0, 78.0 ],
 					"saved_object_attributes" : 					{
 						"default_fontface" : 0,
 						"default_fontname" : "Arial",
@@ -3920,7 +4032,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 196.0, 68.5, 150.0, 48.0 ],
+					"patching_rect" : [ 196.0, 68.5, 150.0, 47.0 ],
 					"text" : "interpreting and distributing those messages to handlers"
 				}
 
@@ -3935,7 +4047,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 196.0, 8.0, 150.0, 34.0 ],
+					"patching_rect" : [ 196.0, 8.0, 150.0, 33.0 ],
 					"text" : "listening for messages from Node"
 				}
 
@@ -4051,7 +4163,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 2,
-					"outlettype" : [ "signal", "bang" ],
+					"outlettype" : [ "", "bang" ],
 					"patching_rect" : [ 948.0, 328.5, 107.0, 20.0 ],
 					"text" : "saySingleWord s6"
 				}
@@ -4065,7 +4177,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 2,
-					"outlettype" : [ "signal", "bang" ],
+					"outlettype" : [ "", "bang" ],
 					"patching_rect" : [ 933.0, 313.5, 107.0, 20.0 ],
 					"text" : "saySingleWord s5"
 				}
@@ -4079,7 +4191,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 2,
-					"outlettype" : [ "signal", "bang" ],
+					"outlettype" : [ "", "bang" ],
 					"patching_rect" : [ 918.0, 298.5, 107.0, 20.0 ],
 					"text" : "saySingleWord s4"
 				}
@@ -4093,7 +4205,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 2,
-					"outlettype" : [ "signal", "bang" ],
+					"outlettype" : [ "", "bang" ],
 					"patching_rect" : [ 903.0, 283.5, 107.0, 20.0 ],
 					"text" : "saySingleWord s3"
 				}
@@ -4107,7 +4219,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 2,
-					"outlettype" : [ "signal", "bang" ],
+					"outlettype" : [ "", "bang" ],
 					"patching_rect" : [ 888.0, 268.5, 107.0, 20.0 ],
 					"text" : "saySingleWord s2"
 				}
@@ -4121,7 +4233,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 2,
-					"outlettype" : [ "signal", "bang" ],
+					"outlettype" : [ "", "bang" ],
 					"patching_rect" : [ 873.0, 253.5, 107.0, 20.0 ],
 					"text" : "saySingleWord s1"
 				}
@@ -4807,6 +4919,15 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-16", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-14", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-78", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -4965,6 +5086,15 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-169", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-55", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-17", 0 ]
 				}
 
 			}
@@ -5209,6 +5339,15 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-197", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-59", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-20", 0 ]
 				}
 
 			}
@@ -5849,6 +5988,24 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-17", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-41", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-20", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-42", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-46", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -5880,6 +6037,15 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-48", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-17", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-49", 0 ]
 				}
 
 			}
@@ -6066,84 +6232,91 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "saySingleWord.maxpat",
-				"bootpath" : "\\Program Files (x86)\\Cycling '74\\Max 6.0\\patches\\MyTools",
-				"patcherrelativepath" : "..\\..\\..\\Program Files (x86)\\Cycling '74\\Max 6.0\\patches\\MyTools",
+				"bootpath" : "/Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "sayWordAtPitch.maxpat",
-				"bootpath" : "\\Program Files (x86)\\Cycling '74\\Max 6.0\\patches\\MyTools",
-				"patcherrelativepath" : "..\\..\\..\\Program Files (x86)\\Cycling '74\\Max 6.0\\patches\\MyTools",
+				"bootpath" : "/Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "vocorder.maxpat",
-				"bootpath" : "\\Program Files (x86)\\Cycling '74\\Max 5.0\\patches\\myTools",
-				"patcherrelativepath" : "..\\..\\..\\Program Files (x86)\\Cycling '74\\Max 5.0\\patches\\myTools",
+				"bootpath" : "/Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "robot_pfft.maxpat",
-				"bootpath" : "\\Program Files (x86)\\Cycling '74\\Max 5.0\\patches\\myTools",
-				"patcherrelativepath" : "..\\..\\..\\Program Files (x86)\\Cycling '74\\Max 5.0\\patches\\myTools",
+				"bootpath" : "/Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "coll_dist_named.maxpat",
-				"bootpath" : "\\Program Files (x86)\\Cycling '74\\Max 6.0\\patches\\MyTools",
-				"patcherrelativepath" : "..\\..\\..\\Program Files (x86)\\Cycling '74\\Max 6.0\\patches\\MyTools",
+				"bootpath" : "/Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "LfoWithFunction.maxpat",
-				"bootpath" : "\\Program Files (x86)\\Cycling '74\\Max 5.0\\patches\\myTools",
-				"patcherrelativepath" : "..\\..\\..\\Program Files (x86)\\Cycling '74\\Max 5.0\\patches\\myTools",
+				"bootpath" : "/Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "numberController.maxpat",
-				"bootpath" : "\\Program Files (x86)\\Cycling '74\\Max 5.0\\patches\\myPatches",
-				"patcherrelativepath" : "..\\..\\..\\Program Files (x86)\\Cycling '74\\Max 5.0\\patches\\myPatches",
+				"bootpath" : "/Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "newLFO2.maxpat",
-				"bootpath" : "\\Program Files (x86)\\Cycling '74\\Max 5.0\\patches\\myTools",
-				"patcherrelativepath" : "..\\..\\..\\Program Files (x86)\\Cycling '74\\Max 5.0\\patches\\myTools",
+				"bootpath" : "/Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "noteTimeSelectBPatch.maxpat",
-				"bootpath" : "\\Program Files (x86)\\Cycling '74\\Max 5.0\\patches\\myTools",
-				"patcherrelativepath" : "..\\..\\..\\Program Files (x86)\\Cycling '74\\Max 5.0\\patches\\myTools",
+				"bootpath" : "/Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fractal_iter_coll.maxpat",
-				"bootpath" : "\\Program Files (x86)\\Cycling '74\\Max 6.0\\patches\\MyTools",
-				"patcherrelativepath" : "..\\..\\..\\Program Files (x86)\\Cycling '74\\Max 6.0\\patches\\MyTools",
+				"bootpath" : "/Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "previous_float.maxpat",
-				"bootpath" : "\\Program Files (x86)\\Cycling '74\\Max 5.0\\patches\\myTools",
-				"patcherrelativepath" : "..\\..\\..\\Program Files (x86)\\Cycling '74\\Max 5.0\\patches\\myTools",
+				"bootpath" : "/Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode",
+				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "flite~.mxe",
-				"type" : "iLaF"
+				"name" : "dataManager.js",
+				"bootpath" : "/Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode",
+				"patcherrelativepath" : ".",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "aka.speech.mxo",
+				"type" : "iLaX"
 			}
  ]
 	}
