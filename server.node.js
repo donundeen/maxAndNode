@@ -10,7 +10,7 @@ var twitterConsumerSecret = secrets.twitterConsumerSecret ;
 var twitterAccessTokenKey = secrets.twitterAccessTokenKey ;
 var twitterAccessTokenSecret = secrets.twitterAccessTokenSecret ;
 
-
+var colourpressurePath = '/Users/buffy/Documents/myApps/Projects/maxAndNode/colourpressure/colourpressure.py'
 
 var sys = require('sys')
 var exec = require('child_process').exec;
@@ -773,7 +773,7 @@ function processImageUrls(images){
               console.log("image file written");
 
               // before sending image out, also figure out the histogram.
-              var cmd = "/usr/bin/python /Users/donundeen/htdocs/node/maxAndNode/colourpressure/colourpressure.py " + writepath;
+              var cmd = "/usr/bin/python "+ colourpressurePath + " " + writepath;
 console.log(cmd);
               var child = exec(cmd, function (error, stdout, stderr) {
                 console.log('stdout: ' + stdout);
