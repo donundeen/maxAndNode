@@ -11,6 +11,7 @@ var twitterAccessTokenKey = secrets.twitterAccessTokenKey ;
 var twitterAccessTokenSecret = secrets.twitterAccessTokenSecret ;
 
 var colourpressurePath = '/Users/buffy/Documents/myApps/Projects/maxAndNode/colourpressure/colourpressure.py'
+var numArtSearchResults = 10;
 
 var sys = require('sys')
 var exec = require('child_process').exec;
@@ -413,7 +414,7 @@ function searchMet(searchTerm){
       var data = JSON.parse(body);   //data.collection.items
   //    console.log(data);
       var i =0;
-      while(i < 5){
+      while(i < numArtSearchResults){
           var index = Math.floor(Math.random()* data.collection.items.length);
         
         if(data.collection && data.collection.items[index] && data.collection.items[index].href){
@@ -439,7 +440,7 @@ function searchWolf(searchTerm){
         var data = JSON.parse(body);   //data.collection.items
         console.log(data);
         var i =0;
-        while(i < 5 && i < data.length){
+        while(i < numArtSearchResults && i < data.length){
           var index = Math.floor(Math.random()* data.length);
 
           if(data[index].collection_item){
@@ -476,7 +477,7 @@ function searchICAPhilla(searchTerm){
         var data = JSON.parse(body);   //data.collection.items
       //  console.log(data);
         var i =0;
-        while(i < 5 && i < data.length){
+        while(i < numArtSearchResults && i < data.length){
           var index = Math.floor(Math.random()* data.length);
           if(data[index].excerpt_image && data[index].excerpt_image.large){
               var image = data[index].excerpt_image.large.url;
@@ -513,7 +514,7 @@ function searchVA(searchTerm){
         var data = JSON.parse(body);   //data.collection.items
       //  console.log(data);
         var i =0;
-        while(i < 5 && i < data.records.length){
+        while(i < numArtSearchResults && i < data.records.length){
           var index = Math.floor(Math.random()* data.records.length);
           if(data.records[index] && data.records[index].fields.primary_image_id){
               var image = data.records[index].fields.primary_image_id;
@@ -555,7 +556,7 @@ function searchTate(searchTerm){
         var data = JSON.parse(body);   //data.collection.items
       //  console.log(data);
         var i =0;
-        while(i < 5 && i < data.results.length){
+        while(i < numArtSearchResults && i < data.results.length){
           var index = Math.floor(Math.random()* data.results.length);
           if(data.results[index] && data.results[index].masterImages && data.results[index].masterImages.length > 0 ){
               var image = data.results[index].masterImages[0].sizes[0].file;
