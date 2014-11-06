@@ -10,6 +10,7 @@ var twitterConsumerSecret = secrets.twitterConsumerSecret ;
 var twitterAccessTokenKey = secrets.twitterAccessTokenKey ;
 var twitterAccessTokenSecret = secrets.twitterAccessTokenSecret ;
 
+var doColor = false;
 var colourpressurePath = '/Users/buffy/Documents/myApps/Projects/maxAndNode/colourpressure/colourpressure.py'
 var numArtSearchResults = 10;
 
@@ -81,7 +82,7 @@ var commandHelp = [
     'short_command' : 's',
     'usage' : 'search SEARCHSTRING',
     'example' : 'search cats',
-    'description' : 'search twitter for string. send images, words, etc to performer' 
+    'description' : 'search twitter for string. send images, words, etc to performer'
   },
   {
     'regex' : /(c|chord)$/,
@@ -89,7 +90,7 @@ var commandHelp = [
     'short_command' : 'c',
     'usage' : 'chord CHORDNAME',
     'example' : 'chord Gm7b5',
-    'description' : 'send a chord to the performer' 
+    'description' : 'send a chord to the performer'
   },
   {
     'regex' : /(a|art)$/,
@@ -97,7 +98,7 @@ var commandHelp = [
     'short_command' : 'a',
     'usage' : 'art ARTSEARCHTERM',
     'example' : 'art chair',
-    'description' : 'search art databases for matches, send images, words, etc to performer' 
+    'description' : 'search art databases for matches, send images, words, etc to performer'
   },
   {
     'regex' : /(r|rhythm)$/,
@@ -105,7 +106,7 @@ var commandHelp = [
     'short_command' : 'r',
     'usage' : 'rhythm PATTERN',
     'example' : 'rhythm . .. . . ',
-    'description' : 'spaces are rests, dots are beats.' 
+    'description' : 'spaces are rests, dots are beats.'
   },
   {
     'regex' : /(b|bpm)$/,
@@ -113,13 +114,13 @@ var commandHelp = [
     'short_command' : 'b',
     'usage' : 'bpm BEATS PER MINUTE',
     'example' : 'bpm 140',
-    'description' : 'set the tempo' 
+    'description' : 'set the tempo'
   }
 ];
 
-comar = []; 
+comar = [];
 scomar = []
-$(commandHelp).each(function(index, com){ 
+$(commandHelp).each(function(index, com){
   comar.push(com.command);
   scomar.push(com.short_command);
 });
@@ -148,7 +149,7 @@ var buf = osc.toBuffer(
 {
 	address : "sayword",
 	oscType : "message",
-	args : 
+	args :
 	[{ type : "string",
 		value : "send from nodejs working"}]
 }
@@ -197,7 +198,7 @@ function getTweetOrders(){
   console.log("\n\nsearching for " +msg + " orders since id " + lastTweetId);
   twit.search(msg, {count: 5,since_id: lastTweetId}, function(err, data) {
 //  twit.search(msg, {}, function(err, data) {
-  
+
 //   fs.writeFile('out.txt', util.inspect(data, false, null));
     console.log("got results");
 //    console.log(data);
@@ -240,7 +241,7 @@ function processMessage(msg, rInfo){
 //	msg = ""+msg;
 
 	var fb = osc.fromBuffer(msg);
-	console.log(fb);	
+	console.log(fb);
 
 	var msg = fb.args[0].value;
 	var type = fb.args[0].type;
@@ -277,8 +278,8 @@ function searchTweet(msg, numTimes){
   page: 1,
   query: 'donundeen',
   refresh_url: '?since_id=297724194320437248&q=donundeen',
-  results: 
-   [ { 
+  results:
+   [ {
 	created_at: 'Sat, 02 Feb 2013 15:12:34 +0000',
        from_user: 'donundeen',
        from_user_id: 19132948,
@@ -320,7 +321,7 @@ function searchTweet(msg, numTimes){
 
 
 	twit.search(msg, {count: 20}, function(err, data) {
-		
+
 //		fs.writeFile('out.txt', util.inspect(data, false. null));
   //  console.log(err);
 //    console.log(data);
@@ -371,7 +372,7 @@ function searchTweet(msg, numTimes){
       processTags(tags);
 
       processNames(names);
-      
+
  //     return false;
 
 		});
@@ -397,9 +398,9 @@ function searchArt(searchTerm){
   searchTerm = searchTerm.trim();
   searchMet(searchTerm);
   searchWolf(searchTerm);
-  searchICAPhilla(searchTerm);  
-  searchVA(searchTerm);  
-  searchTate(searchTerm);  
+  searchICAPhilla(searchTerm);
+  searchVA(searchTerm);
+  searchTate(searchTerm);
 }
 
 
@@ -416,7 +417,7 @@ function searchMet(searchTerm){
       var i =0;
       while(i < numArtSearchResults){
           var index = Math.floor(Math.random()* data.collection.items.length);
-        
+
         if(data.collection && data.collection.items[index] && data.collection.items[index].href){
           parseMetScrapiUrl(data.collection.items[index].href);
         }
@@ -487,7 +488,7 @@ function searchICAPhilla(searchTerm){
               if(data[index].name){
                 console.log(data[index].name.trim());
                 var words = data[index].name.trim().match(wordPattr);
-                console.log(words);                
+                console.log(words);
                 processWords(words);
               }
 
@@ -522,14 +523,14 @@ function searchVA(searchTerm){
               image = imagePath + image.substring(0,6) + "/"+image+"_jpg_l.jpg";
               console.log("________________________________ V and A ! " + image);
               processImageUrls([image]);
-              
+
               if(data.records[index].fields.object){
                 console.log(data.records[index].fields.object.trim());
                 var words = data.records[index].fields.object.trim().match(wordPattr);
-                console.log(words);                
+                console.log(words);
                 processWords(words);
               }
-              
+
 
           }
           i++;
@@ -625,7 +626,7 @@ function processWords(wordList){
   {
     address : "line",
     oscType : "message",
-    args : wordargs        
+    args : wordargs
   }
   );
   sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
@@ -635,7 +636,7 @@ function processWords(wordList){
   {
     address : "sayword",
     oscType : "message",
-    args : ["word"]        
+    args : ["word"]
   }
   );
   sender.send(buf2, 0, buf2.length, 12000, '127.0.0.1');
@@ -645,7 +646,7 @@ function processWords(wordList){
 
 function processUrls(urlList){
   console.log("processurls");
-  console.log(urlList); 
+  console.log(urlList);
   $(urlList).each(function (i, url){
     url = url.replace(/”/,"").trim();
 
@@ -674,7 +675,7 @@ function processUrls(urlList){
         data += chunk;
       });
       res.on('end', function(err){
-        var doc = $(data); 
+        var doc = $(data);
         console.log("got file at  " + getthisurl);
 
         fs.writeFile("files/"+hash, data, function(err) {
@@ -773,41 +774,43 @@ function processImageUrls(images){
             .on('close', function(event, filename){
               console.log("image file written");
 
-              // before sending image out, also figure out the histogram.
-              var cmd = "/usr/bin/python "+ colourpressurePath + " " + writepath;
-console.log(cmd);
-              var child = exec(cmd, function (error, stdout, stderr) {
-                console.log('stdout: ' + stdout);
-                console.log('stderr: ' + stderr);
-                var hist = stdout.replace(/"[^"]+",/,"");
-                console.log(hist);
-                var imagearg = {type: "string" , value: writepath + "|" + hist};
-//var regex = /"([^"]+)","([^"]+)"/g;
-/*
-var regex = /"((\([0-9]+,[0-9]+,[0-9]+\))\|?)+","((\([0-9]+,[0-9]+,[0-9]+\))\|?)+"/g;
+              if(doColor){
+                // before sending image out, also figure out the histogram.
+                var cmd = "/usr/bin/python "+ colourpressurePath + " " + writepath;
+  console.log(cmd);
+                var child = exec(cmd, function (error, stdout, stderr) {
+                  console.log('stdout: ' + stdout);
+                  console.log('stderr: ' + stderr);
+                  var hist = stdout.replace(/"[^"]+",/,"");
+                  console.log(hist);
+                  var imagearg = {type: "string" , value: writepath + "|" + hist};
+  //var regex = /"([^"]+)","([^"]+)"/g;
+  /*
+  var regex = /"((\([0-9]+,[0-9]+,[0-9]+\))\|?)+","((\([0-9]+,[0-9]+,[0-9]+\))\|?)+"/g;
 
-var matches = regex.exec(hist);
-if(matches){
-  console.log(matches);
-  console.log(matches[1]);
-  console.log(matches[2]);
-}
-*/
-                var buf = osc.toBuffer(
-                  {
-                    address : "image",
-                    oscType : "message",
-                    args : imagearg        
+  var matches = regex.exec(hist);
+  if(matches){
+    console.log(matches);
+    console.log(matches[1]);
+    console.log(matches[2]);
+  }
+  */
+                  var buf = osc.toBuffer(
+                    {
+                      address : "image",
+                      oscType : "message",
+                      args : imagearg
+                    }
+                  );
+                  sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
+
+                  if (error !== null) {
+                    console.log('exec error: ' + error);
                   }
-                );
-                sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
-                 
-                if (error !== null) {
-                  console.log('exec error: ' + error);
-                }
-              });
+                });
+              }
 // imageR: /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/DP116081.jpg|"(180,1,57)|(24,30,82)|(24,47,68)|(25,41,76)|(25,24,87)|(20,2,64)|(24,50,60)|(23,52,53)|(22,67,36)|(16,48,12)|(22,53,44)|(25,12,95)"
- 
+
 
 
 
@@ -817,7 +820,7 @@ if(matches){
                 {
                   address : "image",
                   oscType : "message",
-                  args : imagearg        
+                  args : imagearg
                 }
                 );
                 sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
@@ -877,7 +880,7 @@ function parseTweetCommand(tweetCommand){
     console.log("args: " + args);
   }else{
     console.log("'"+tweetCommand+"' isn't good command syntax, but maybe you sent an http link");
-    
+
   }
 
   if(command != ""){
@@ -993,7 +996,7 @@ function runCommandChord(chordString){
 
   $(chord.notes).each(function(index, note){
     note.octave = 1;
-//    noteArray.push(note); 
+//    noteArray.push(note);
     var newoct = 1;
     while(newoct < 8){
       var newnote = new teoria.note(note.name + note.accidental.sign);
@@ -1048,18 +1051,18 @@ function runCommandRestart(restartArgs){
 
 function runCommandHelp(helpString){
   // help command is either :
-  // h, ? , or help alone. 
+  // h, ? , or help alone.
   // - that returns a list of possible commands
-  // [h|help|?] <command> returns explanation of that command. 
+  // [h|help|?] <command> returns explanation of that command.
   /*
       'regex' : '(b|bpm)$',
     'command' : 'bpm',
     'short_command' : 'b',
     'usage' : 'bpm BEATS PER MINUTE',
     'example' : 'bpm 140',
-    'description' : 'set the tempo' 
+    'description' : 'set the tempo'
     */
-  if(!helpString){helpString = "";}  
+  if(!helpString){helpString = "";}
   helpString = helpString.trim();
   var msg = "";
   $(commandHelp).each(function(index, command){
@@ -1074,7 +1077,7 @@ function runCommandHelp(helpString){
       msg += "\n" + rand;
 
       console.log(msg);
-      console.log(msg.length);      
+      console.log(msg.length);
       if(msg.length< 140){
         twit.updateStatus(msg,{}, function(err){console.log("in callback"); console.log(err);});
       }
