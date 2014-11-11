@@ -802,6 +802,8 @@ function processImageUrls(images){
                       args : imagearg
                     }
                   );
+                console.log("sending image ");
+                console.log( imagearg);                  
                   sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
 
                   if (error !== null) {
@@ -828,6 +830,9 @@ function processImageUrls(images){
                     args : imagearg
                   }
                 );
+                console.log("sending image ");
+                console.log( imagearg);                  
+
                 sender.send(buf, 0, buf.length, 12000, '127.0.0.1');
               }
 // imageR: /Users/donundeen/Library/Containers/com.bitnami.mampstack/Data/app-5_4_9/apache2/htdocs/node/maxAndNode/files/images/DP116081.jpg|"(180,1,57)|(24,30,82)|(24,47,68)|(25,41,76)|(25,24,87)|(20,2,64)|(24,50,60)|(23,52,53)|(22,67,36)|(16,48,12)|(22,53,44)|(25,12,95)"
